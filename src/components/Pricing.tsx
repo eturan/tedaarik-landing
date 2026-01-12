@@ -44,13 +44,13 @@ const Pricing = () => {
           {/* Header */}
           <div className="text-center mb-8 animate-fade-in">
             <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 rounded-full font-semibold border border-accent/20 text-accent mb-3">
-              <span>Fiyatlandırma</span>
+              <span>Çözümlerimiz</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold mb-3 text-foreground">
-              İşletmenize Uygun Planı Seçin
+              İşletmenize Uygun Çözümü Seçin
             </h2>
             <p className="text-base text-muted-foreground max-w-2xl mx-auto">
-              Lansman öncesi kullanıcılar tüm planlarda ömür boyu %50 indirim kazanır
+              Size en uygun çözümü belirlemek için bizimle iletişime geçin.
             </p>
           </div>
 
@@ -69,26 +69,11 @@ const Pricing = () => {
                   <div className="glass-card-strong border-2 border-accent shadow-lg shadow-accent/20 transition-all duration-300 p-8 sm:p-10 rounded-2xl flex flex-col mx-auto max-w-2xl">
                     {/* Badge */}
                     <Badge className="mb-6 bg-highlight/20 border-highlight/40 text-highlight-foreground hover:bg-highlight/30 hover:border-highlight/60 transition-colors w-fit text-sm px-4 py-1.5">
-                      🏆Lansman öncesi kayıt olanlara ömür boyu %50 indirim garantisi
+                      🏆 Lansman öncesi öncelikli erişim fırsatı
                     </Badge>
 
                     {/* Title */}
-                    <h3 className="text-3xl font-bold mb-6 text-foreground">Tedaarik</h3>
-
-                    {/* Price */}
-                    <div className="mb-8">
-                      <div className="flex items-baseline gap-3 mb-2">
-                        <span className="text-2xl font-semibold text-muted-foreground line-through">$60</span>
-                        <span className="text-5xl font-bold text-accent">$30</span>
-                        <span className="text-lg text-muted-foreground">/ay</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Yıllık: <span className="line-through">$600</span> <span className="font-semibold text-accent">$300</span> - erken erişim özel
-                      </p>
-                      <p className="text-sm text-highlight-foreground font-medium">
-                        Lansman öncesi özel fiyat
-                      </p>
-                    </div>
+                    <h3 className="text-3xl font-bold mb-6 text-foreground">Tedaarik Başlangıç</h3>
 
                     {/* Features List - Single column for better readability */}
                     <div className="space-y-3 mb-8 flex-grow">

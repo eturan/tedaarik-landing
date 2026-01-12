@@ -44,6 +44,9 @@ All colors MUST be HSL.
 
     --radius: 0.75rem;
 
+    --font-geist-sans: "Geist Sans", sans-serif;
+    --font-geist-mono: "Geist Mono", monospace;
+
     --glass-bg: 0 0% 100%;
     --glass-border: 220 13% 91%;
     
