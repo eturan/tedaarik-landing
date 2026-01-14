@@ -5,6 +5,8 @@ import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import dashboardPreview from "@/assets/dashboard-preview-new.png";
 import mobileAppPreview from "@/assets/mobile-app-preview-new.png";
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
+import GradientMeshBackground from "@/components/ui/GradientMeshBackground";
+import heroBackground from "@/assets/hero-background.webp";
 
 const Hero = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -120,7 +122,24 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[75vh] lg:min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen pt-16 lg:pt-20 flex items-center justify-center overflow-hidden">
+      {/* Background image with Ken Burns effect */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img
+          src={heroBackground}
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          className="w-full h-full object-cover opacity-40 animate-ken-burns object-[70%_center] md:object-center"
+        />
+      </div>
+
+      {/* Animated gradient mesh background - on top of video */}
+      <GradientMeshBackground intensity="subtle" className="z-[1]" />
+
+      {/* Semi-transparent overlay for content readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/40 to-background/70 z-[2]" />
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Z-Pattern Layout: Text Left, Image Right */}
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto py-16">

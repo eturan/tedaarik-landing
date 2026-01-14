@@ -13,13 +13,19 @@ const Header = () => {
   const headerBg = useTransform(
     scrollY,
     [0, 100],
-    ["rgba(255, 255, 255, 0.85)", "rgba(255, 255, 255, 0.98)"]
+    ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.95)"]
   );
 
   const headerShadow = useTransform(
     scrollY,
     [0, 100],
     ["0 0 0 rgba(0,0,0,0)", "0 4px 20px rgba(0,0,0,0.1)"]
+  );
+
+  const headerBorder = useTransform(
+    scrollY,
+    [0, 100],
+    ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.1)"]
   );
 
   useEffect(() => {
@@ -33,10 +39,13 @@ const Header = () => {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-border/50"
+      className="fixed top-0 left-0 right-0 z-50"
       style={{
         backgroundColor: headerBg,
         boxShadow: headerShadow,
+        borderBottom: `1px solid`,
+        borderColor: headerBorder,
+        backdropFilter: hasScrolled ? "blur(12px)" : "none",
       }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}

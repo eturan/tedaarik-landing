@@ -90,7 +90,7 @@ const Footer = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <Mail className="h-4 w-4" />
-                info@tedaarik.com.tr
+                info@tedaarik.com
               </motion.a>
 
               {/* Social Media Icons */}
