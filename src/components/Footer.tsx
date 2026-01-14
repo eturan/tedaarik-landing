@@ -1,6 +1,11 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { Mail, Instagram, Facebook, Linkedin } from "lucide-react";
 
 const Footer = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
   const footerLinks = {
     product: {
       title: "Ürün",
@@ -16,89 +21,156 @@ const Footer = () => {
     },
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+  };
+
+  const socialVariants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 15,
+      },
+    },
+  };
+
   return (
-    <footer className="bg-white/50 backdrop-blur-lg border-t border-border py-16">
+    <motion.footer
+      ref={ref}
+      className="bg-white/50 backdrop-blur-lg border-t border-border py-16"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
-          <div className="space-y-4">
-            <h3 className="font-bold text-lg text-foreground">Tedaarik</h3>
+          <motion.div className="space-y-4" variants={itemVariants}>
+            <motion.h3
+              className="font-bold text-lg text-foreground"
+              whileHover={{ x: 2 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              Tedaarik
+            </motion.h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Yiyecek ve içecek işletmeleri için yapay zekâ destekli tedarik ve maliyet zekâ katmanı.
             </p>
-            
+
             {/* Contact Info */}
             <div className="space-y-3 pt-2">
               <h4 className="font-semibold text-sm">İletişim</h4>
-              <a 
-                href="mailto:info@tedaarik.com.tr"
+              <motion.a
+                href="mailto:info@tedaarik.com"
                 className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <Mail className="h-4 w-4" />
                 info@tedaarik.com.tr
-              </a>
-              
+              </motion.a>
+
               {/* Social Media Icons */}
-              <div className="flex gap-3 pt-1">
-                <a
-                  href="https://www.instagram.com/tedaarik"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://www.facebook.com/profile.php?id=61572430141707"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/tedaarik"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-              </div>
+              <motion.div
+                className="flex gap-3 pt-1"
+                variants={containerVariants}
+              >
+                {[
+                  { icon: Instagram, href: "https://www.instagram.com/tedaarik", label: "Instagram" },
+                  { icon: Facebook, href: "https://www.facebook.com/profile.php?id=61572430141707", label: "Facebook" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/company/tedaarik", label: "LinkedIn" },
+                ].map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-accent transition-colors"
+                    aria-label={social.label}
+                    variants={socialVariants}
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </motion.a>
+                ))}
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Links */}
           {Object.values(footerLinks).map((section, index) => (
-            <div key={index}>
-              <h3 className="font-semibold mb-4">{section.title}</h3>
+            <motion.div
+              key={index}
+              variants={itemVariants}
+            >
+              <motion.h3
+                className="font-semibold mb-4"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+              >
+                {section.title}
+              </motion.h3>
               <ul className="space-y-3">
                 {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a
+                  <motion.li
+                    key={linkIndex}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                    transition={{ delay: 0.4 + index * 0.1 + linkIndex * 0.05 }}
+                  >
+                    <motion.a
                       href="#"
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                      whileHover={{ x: 4 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
                       {link}
-                    </a>
-                  </li>
+                    </motion.a>
+                  </motion.li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border text-center">
+        <motion.div
+          className="pt-8 border-t border-border text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+        >
           <p className="text-sm text-muted-foreground/60">
             © 2025 Tedaarik. Tüm hakları saklıdır.
           </p>
-        </div>
+        </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

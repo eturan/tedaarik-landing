@@ -1,6 +1,11 @@
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { Clock, TrendingDown, Database } from "lucide-react";
 
 const ProblemSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
   const problems = [
     {
       icon: Clock,
@@ -25,38 +30,139 @@ const ProblemSection = () => {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const headerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+  };
+
+  const iconVariants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 15,
+        delay: 0.2,
+      },
+    },
+  };
+
   return (
     <section id="problem-section" className="py-16 lg:py-24 relative">
       {/* Gradient overlay for smooth transition from Hero section */}
       <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-background to-transparent pointer-events-none z-10" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Section Header */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <motion.div
+          className="max-w-4xl mx-auto text-center mb-16"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={headerVariants}
+        >
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">
             Her ay yüzlerce fatura alıyoruz <br /> ama fatura bilgilerinden{" "}
-            <span className="text-accent">faydalanmıyoruz.</span>
+            <motion.span
+              className="text-accent inline-block"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+            >
+              faydalanmıyoruz.
+            </motion.span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Problem Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <motion.div
+          className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {problems.map((problem, index) => (
-            <div
+            <motion.div
               key={index}
-              className="glass-card-strong rounded-2xl p-8 space-y-6 hover:scale-105 transition-transform duration-300"
+              variants={cardVariants}
+              whileHover={{
+                scale: 1.03,
+                y: -8,
+                transition: { type: "spring", stiffness: 400, damping: 17 }
+              }}
+              className="glass-card-strong rounded-2xl p-8 space-y-6 cursor-pointer group"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-highlight/20 text-accent">
+              <motion.div
+                className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-highlight/20 text-accent group-hover:bg-accent/20 transition-colors duration-300"
+                variants={iconVariants}
+                whileHover={{
+                  rotate: [0, -10, 10, -10, 0],
+                  transition: { duration: 0.5 }
+                }}
+              >
                 <problem.icon className="h-7 w-7" />
-              </div>
+              </motion.div>
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-accent">{problem.title}</h3>
-                <p className="text-base font-bold text-foreground leading-relaxed">{problem.headline}</p>
-                <p className="text-sm text-muted-foreground leading-relaxed font-normal">{problem.description}</p>
+                <motion.h3
+                  className="text-xl font-bold text-accent"
+                  initial={{ opacity: 0 }}
+                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ delay: 0.3 + index * 0.1 }}
+                >
+                  {problem.title}
+                </motion.h3>
+                <p className="text-base font-bold text-foreground leading-relaxed group-hover:text-foreground/90 transition-colors">
+                  {problem.headline}
+                </p>
+                <motion.p
+                  className="text-sm text-muted-foreground leading-relaxed font-normal"
+                  initial={{ opacity: 0.7 }}
+                  whileHover={{ opacity: 1 }}
+                >
+                  {problem.description}
+                </motion.p>
               </div>
-            </div>
+
+              {/* Hover gradient effect */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                initial={{ opacity: 0 }}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
