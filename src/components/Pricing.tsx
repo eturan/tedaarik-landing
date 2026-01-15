@@ -328,7 +328,7 @@ const Pricing = () => {
         </div>
       </section>
 
-      <EarlyAccessForm open={isFormOpen} onOpenChange={setIsFormOpen} />
+      <EarlyAccessForm open={isFormOpen} onOpenChange={setIsFormOpen} source="pricing" />
     </>
   );
 };

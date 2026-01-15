@@ -87,7 +87,7 @@ const Header = () => {
         </div>
       </div>
 
-      <EarlyAccessForm open={isFormOpen} onOpenChange={setIsFormOpen} />
+      <EarlyAccessForm open={isFormOpen} onOpenChange={setIsFormOpen} source="header" />
     </motion.header>
   );
 };

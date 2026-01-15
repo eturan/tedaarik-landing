@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { trackEarlyAccessFormOpened, trackEarlyAccessFormSubmitted } from "@/lib/posthog";
 import {
   Dialog,
   DialogContent,
@@ -53,10 +54,18 @@ const turkishCities = [
 interface EarlyAccessFormProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  source?: string;
 }
 
-export function EarlyAccessForm({ open, onOpenChange }: EarlyAccessFormProps) {
+export function EarlyAccessForm({ open, onOpenChange, source = "unknown" }: EarlyAccessFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Track form opened
+  useEffect(() => {
+    if (open) {
+      trackEarlyAccessFormOpened(source);
+    }
+  }, [open, source]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -89,6 +98,12 @@ export function EarlyAccessForm({ open, onOpenChange }: EarlyAccessFormProps) {
       if (!response.ok) {
         throw new Error("Form gönderilemedi");
       }
+
+      // Track successful submission
+      trackEarlyAccessFormSubmitted({
+        email: values.email,
+        company: values.restaurantName,
+      });
 
       toast({
         title: "Başarılı!",

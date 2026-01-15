@@ -146,7 +146,7 @@ const EarlyAccess = () => {
         </div>
       </div>
 
-      <EarlyAccessForm open={isFormOpen} onOpenChange={setIsFormOpen} />
+      <EarlyAccessForm open={isFormOpen} onOpenChange={setIsFormOpen} source="early_access_section" />
     </section>
   );
 };

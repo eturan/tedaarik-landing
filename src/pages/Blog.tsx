@@ -92,6 +92,7 @@ const Blog = () => {
       <EarlyAccessForm
         open={isEarlyAccessOpen}
         onOpenChange={setIsEarlyAccessOpen}
+        source="blog_list"
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
@@ -9,11 +9,23 @@ import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { getPostBySlug } from "@/lib/blog";
+import { trackBlogPostViewed } from "@/lib/posthog";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPostBySlug(slug) : undefined;
   const [isEarlyAccessOpen, setIsEarlyAccessOpen] = useState(false);
+
+  // Track blog post view
+  useEffect(() => {
+    if (post && slug) {
+      trackBlogPostViewed({
+        slug,
+        title: post.frontmatter.title,
+        category: post.frontmatter.category,
+      });
+    }
+  }, [slug, post]);
 
   if (!post) {
     return <Navigate to="/blog" replace />;
@@ -73,6 +85,7 @@ const BlogPost = () => {
       <EarlyAccessForm
         open={isEarlyAccessOpen}
         onOpenChange={setIsEarlyAccessOpen}
+        source="blog_post"
       />
     </div>
   );
