@@ -200,4 +200,37 @@ All colors MUST be HSL.
       transform: scale(1.05);
     }
   }
+
+  /* Blog-specific styles */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Code block styling for blog */
+  .hljs {
+    background: transparent !important;
+  }
+
+  pre code.hljs {
+    padding: 0;
+  }
+
+  /* Smooth scroll for heading anchors */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .scroll-mt-20 {
+    scroll-margin-top: 5rem;
+  }
 }
