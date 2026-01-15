@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { Mail, Instagram, Facebook, Linkedin } from "lucide-react";
 
 const Footer = () => {
@@ -9,15 +10,30 @@ const Footer = () => {
   const footerLinks = {
     product: {
       title: "Ürün",
-      links: ["Özellikler", "Fiyatlandırma", "Nasıl Çalışır?", "Sıkça Sorulan Sorular"],
+      links: [
+        { label: "Özellikler", href: "#" },
+        { label: "Fiyatlandırma", href: "#" },
+        { label: "Nasıl Çalışır?", href: "#" },
+        { label: "Sıkça Sorulan Sorular", href: "#" },
+      ],
     },
     company: {
       title: "Şirket",
-      links: ["Hakkımızda", "Blog", "Kariyer", "İletişim"],
+      links: [
+        { label: "Hakkımızda", href: "#" },
+        { label: "Blog", href: "/blog", isInternal: true },
+        { label: "Kariyer", href: "#" },
+        { label: "İletişim", href: "#" },
+      ],
     },
     legal: {
       title: "Yasal",
-      links: ["Gizlilik Politikası", "Kullanım Şartları", "Çerez Politikası", "KVKK"],
+      links: [
+        { label: "Gizlilik Politikası", href: "/gizlilik-politikasi", isInternal: true },
+        { label: "Kullanım Şartları", href: "/kullanim-sartlari", isInternal: true },
+        { label: "Çerez Politikası", href: "/cerez-politikasi", isInternal: true },
+        { label: "KVKK", href: "/gizlilik-politikasi", isInternal: true },
+      ],
     },
   };
 
@@ -143,14 +159,29 @@ const Footer = () => {
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                     transition={{ delay: 0.4 + index * 0.1 + linkIndex * 0.05 }}
                   >
-                    <motion.a
-                      href="#"
-                      className="text-sm text-muted-foreground hover:text-accent transition-colors"
-                      whileHover={{ x: 4 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    >
-                      {link}
-                    </motion.a>
+                    {link.isInternal ? (
+                      <Link
+                        to={link.href}
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors inline-block"
+                      >
+                        <motion.span
+                          className="inline-block"
+                          whileHover={{ x: 4 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                        >
+                          {link.label}
+                        </motion.span>
+                      </Link>
+                    ) : (
+                      <motion.a
+                        href={link.href}
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                        whileHover={{ x: 4 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                      >
+                        {link.label}
+                      </motion.a>
+                    )}
                   </motion.li>
                 ))}
               </ul>
