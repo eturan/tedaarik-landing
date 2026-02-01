@@ -9,6 +9,7 @@ import BlogPost from "./pages/BlogPost";
 import GizlilikPolitikasi from "./pages/GizlilikPolitikasi";
 import KullanimSartlari from "./pages/KullanimSartlari";
 import CerezPolitikasi from "./pages/CerezPolitikasi";
+import Hakkimizda from "./pages/Hakkimizda";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/gizlilik-politikasi" element={<GizlilikPolitikasi />} />
           <Route path="/kullanim-sartlari" element={<KullanimSartlari />} />
           <Route path="/cerez-politikasi" element={<CerezPolitikasi />} />
+          <Route path="/hakkimizda" element={<Hakkimizda />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -20,7 +20,7 @@ const Footer = () => {
     company: {
       title: "Şirket",
       links: [
-        { label: "Hakkımızda", href: "#" },
+        { label: "Hakkımızda", href: "/hakkimizda", isInternal: true },
         { label: "Blog", href: "/blog", isInternal: true },
         { label: "Kariyer", href: "#" },
         { label: "İletişim", href: "#" },
