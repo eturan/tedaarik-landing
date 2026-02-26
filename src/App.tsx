@@ -10,6 +10,10 @@ import BlogPost from "./pages/BlogPost";
 import GizlilikPolitikasi from "./pages/GizlilikPolitikasi";
 import KullanimSartlari from "./pages/KullanimSartlari";
 import CerezPolitikasi from "./pages/CerezPolitikasi";
+import MesafeliSatisSozlesmesi from "./pages/MesafeliSatisSozlesmesi";
+import TeslimatVeIade from "./pages/TeslimatVeIade";
+import OnBilgilendirme from "./pages/OnBilgilendirme";
+import KabulVeOnay from "./pages/KabulVeOnay";
 import Hakkimizda from "./pages/Hakkimizda";
 import NotFound from "./pages/NotFound";
 
@@ -40,6 +44,10 @@ const App = () => (
           <Route path="/gizlilik-politikasi" element={<GizlilikPolitikasi />} />
           <Route path="/kullanim-sartlari" element={<KullanimSartlari />} />
           <Route path="/cerez-politikasi" element={<CerezPolitikasi />} />
+          <Route path="/mesafeli-satis-sozlesmesi" element={<MesafeliSatisSozlesmesi />} />
+          <Route path="/teslimat-ve-iade" element={<TeslimatVeIade />} />
+          <Route path="/on-bilgilendirme" element={<OnBilgilendirme />} />
+          <Route path="/kabul-ve-onay" element={<KabulVeOnay />} />
           <Route path="/hakkimizda" element={<Hakkimizda />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

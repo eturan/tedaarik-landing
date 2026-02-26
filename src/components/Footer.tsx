@@ -29,10 +29,13 @@ const Footer = () => {
     legal: {
       title: "Yasal",
       links: [
-        { label: "Gizlilik Politikası", href: "/gizlilik-politikasi", isInternal: true },
-        { label: "Kullanım Şartları", href: "/kullanim-sartlari", isInternal: true },
+        { label: "Hizmet Kullanım Sözleşmesi", href: "/kullanim-sartlari", isInternal: true },
+        { label: "Mesafeli Satış Sözleşmesi", href: "/mesafeli-satis-sozlesmesi", isInternal: true },
+        { label: "Teslimat ve İade Şartları", href: "/teslimat-ve-iade", isInternal: true },
+        { label: "Gizlilik ve KVKK", href: "/gizlilik-politikasi", isInternal: true },
+        { label: "Ön Bilgilendirme", href: "/on-bilgilendirme", isInternal: true },
+        { label: "Kabul ve Onay", href: "/kabul-ve-onay", isInternal: true },
         { label: "Çerez Politikası", href: "/cerez-politikasi", isInternal: true },
-        { label: "KVKK", href: "/gizlilik-politikasi", isInternal: true },
       ],
     },
   };
