@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -147,6 +148,10 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
 };
 
 const Hakkimizda = () => {
+  useEffect(() => {
+    document.title = "Hakkımızda - Tedaarik";
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />

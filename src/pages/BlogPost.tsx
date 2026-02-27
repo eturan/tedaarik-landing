@@ -16,7 +16,7 @@ const BlogPost = () => {
   const post = slug ? getPostBySlug(slug) : undefined;
   const [isEarlyAccessOpen, setIsEarlyAccessOpen] = useState(false);
 
-  // Track blog post view
+  // Track blog post view and set document title
   useEffect(() => {
     if (post && slug) {
       trackBlogPostViewed({
@@ -24,6 +24,7 @@ const BlogPost = () => {
         title: post.frontmatter.title,
         category: post.frontmatter.category,
       });
+      document.title = `${post.frontmatter.title} | Tedaarik Blog`;
     }
   }, [slug, post]);
 

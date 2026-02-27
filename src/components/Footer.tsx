@@ -11,10 +11,10 @@ const Footer = () => {
     product: {
       title: "Ürün",
       links: [
-        { label: "Özellikler", href: "#" },
-        { label: "Fiyatlandırma", href: "#" },
-        { label: "Nasıl Çalışır?", href: "#" },
-        { label: "Sıkça Sorulan Sorular", href: "#" },
+        { label: "Özellikler", href: "/#problem-section" },
+        { label: "Fiyatlandırma", href: "/#pricing" },
+        { label: "Nasıl Çalışır?", href: "/#how-it-works" },
+        { label: "Erken Erişim", href: "/#early-access" },
       ],
     },
     company: {
@@ -22,8 +22,7 @@ const Footer = () => {
       links: [
         { label: "Hakkımızda", href: "/hakkimizda", isInternal: true },
         { label: "Blog", href: "/blog", isInternal: true },
-        { label: "Kariyer", href: "#" },
-        { label: "İletişim", href: "#" },
+        { label: "İletişim", href: "mailto:info@tedaarik.com" },
       ],
     },
     legal: {

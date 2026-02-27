@@ -87,7 +87,7 @@ const Pricing = () => {
 
   return (
     <>
-      <section className="py-12 lg:py-16 pb-8 lg:pb-12 relative overflow-hidden" ref={ref}>
+      <section id="pricing" className="py-12 lg:py-16 pb-8 lg:pb-12 relative overflow-hidden" ref={ref}>
         {/* Background decoration */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background pointer-events-none" />
 

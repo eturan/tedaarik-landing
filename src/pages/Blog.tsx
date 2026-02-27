@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,6 +15,10 @@ import {
 const Blog = () => {
   const posts = getAllPosts();
   const [isEarlyAccessOpen, setIsEarlyAccessOpen] = useState(false);
+
+  useEffect(() => {
+    document.title = "Restoran Yönetimi Rehberleri | Tedaarik Blog";
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">

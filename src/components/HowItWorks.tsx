@@ -112,7 +112,7 @@ const HowItWorks = () => {
   };
 
   return (
-    <section className="py-16 lg:py-24 relative bg-muted/30">
+    <section id="how-it-works" className="py-16 lg:py-24 relative bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         {/* Header */}
         <motion.div
