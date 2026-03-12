@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Header from "@/components/Header";
+import { Navigation } from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { BlogCard } from "@/components/blog/BlogCard";
@@ -23,7 +23,7 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />
-      <Header />
+      <Navigation />
 
       <main className="pt-24 lg:pt-32 pb-16">
         {/* Hero Section */}

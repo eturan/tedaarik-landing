@@ -26,7 +26,7 @@ All colors MUST be HSL.
     --muted: 220 10% 92%;
     --muted-foreground: 220 15% 40%;
 
-    --accent: 178 53% 46%;
+    --accent: 174 74% 32%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -40,7 +40,7 @@ All colors MUST be HSL.
     
     --border: 220 13% 88%;
     --input: 0 0% 100%;
-    --ring: 178 53% 46%;
+    --ring: 174 74% 32%;
 
     --radius: 0.75rem;
 
@@ -50,8 +50,8 @@ All colors MUST be HSL.
     --glass-bg: 0 0% 100%;
     --glass-border: 220 13% 91%;
     
-    --glow-primary: 178 53% 46%;
-    --glow-secondary: 178 40% 60%;
+    --glow-primary: 174 74% 32%;
+    --glow-secondary: 174 50% 45%;
 
     /* Gradient mesh colors - warm restaurant theme */
     --mesh-amber: 38 92% 50%;

@@ -1,27 +1,29 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import ProblemSection from "@/components/ProblemSection";
-import Calculator from "@/components/Calculator";
-import HowItWorks from "@/components/HowItWorks";
-import Pricing from "@/components/Pricing";
-import EarlyAccess from "@/components/EarlyAccess";
-import ActiveRegions from "@/components/ActiveRegions";
+import { Navigation } from "@/components/Navigation";
+import { Hero } from "@/components/Hero";
+import { PainPoints } from "@/components/PainPoints";
+import { Calculator } from "@/components/Calculator";
+import { Features } from "@/components/Features";
+import { HowItWorks } from "@/components/HowItWorks";
+import { Testimonials } from "@/components/Testimonials";
+import { Pricing } from "@/components/Pricing";
+import { FAQ } from "@/components/FAQ";
+import { CTA } from "@/components/CTA";
 import Footer from "@/components/Footer";
-import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <ScrollProgress />
-      <Header />
-      <main className="pt-16 lg:pt-22">
+      <Navigation />
+      <main>
         <Hero />
-        <ProblemSection />
+        <PainPoints />
         <Calculator />
+        <Features />
         <HowItWorks />
+        <Testimonials />
         <Pricing />
-        <EarlyAccess />
-        <ActiveRegions />
+        <FAQ />
+        <CTA />
       </main>
       <Footer />
     </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Header from "@/components/Header";
+import { Navigation } from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { BlogHeader } from "@/components/blog/BlogHeader";
@@ -37,7 +37,7 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-background">
       <ScrollProgress />
-      <Header />
+      <Navigation />
 
       <main className="pt-24 lg:pt-32 pb-16">
         <article className="container mx-auto px-4 max-w-4xl">

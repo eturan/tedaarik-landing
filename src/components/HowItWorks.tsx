@@ -1,258 +1,129 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Camera, Eye, RefreshCw, ShoppingCart } from "lucide-react";
+import { motion } from 'framer-motion';
+import { Upload, ChefHat, Scale, LayoutDashboard, FileText, Users, Clock } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-const HowItWorks = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+export function HowItWorks() {
+  const { t } = useLanguage();
 
-  const steps = [
-    {
-      number: "01",
-      icon: Camera,
-      title: "Faturanızın fotoğrafını ya da dijital dosyasını yükleyin",
-      description: "Geri kalan her şeyi akıllı asistanınıza bırakın.",
-    },
-    {
-      number: "02",
-      icon: Eye,
-      title: "Faturanız ve maliyetleriniz otomatik olarak analiz edilsin",
-      description: "Angarya işleri Tedaarik halletsin.",
-    },
-    {
-      number: "03",
-      icon: RefreshCw,
-      title: "Ürün tedarik fiyatlarınızı bölgenizdeki anonim fiyat aralıklarıyla karşılaştırın",
-      description: "Pazar araştırmanızı otomatikleştirin.",
-    },
-    {
-      number: "04",
-      icon: ShoppingCart,
-      title: "Ekibinizle satın alma listesi oluşturup tek tıkla birden fazla sipariş verin",
-      description: "Boğucu WhatsApp gruplarından kurtulun.",
-    },
+  const mainSteps = [
+    { icon: Upload, title: t.howItWorks.steps[0], step: 1 },
+    { icon: ChefHat, title: t.howItWorks.steps[1], step: 2 },
+    { icon: Scale, title: t.howItWorks.steps[2], step: 3 },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const headerVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1],
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1],
-      },
-    },
-  };
-
-  const numberVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: {
-      opacity: 0.3,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 15,
-        delay: 0.1,
-      },
-    },
-  };
-
-  const iconVariants = {
-    hidden: { scale: 0, rotate: -90 },
-    visible: {
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: "spring",
-        stiffness: 200,
-        damping: 15,
-        delay: 0.2,
-      },
-    },
-  };
-
-  const bannerVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1],
-        delay: 0.8,
-      },
-    },
-  };
+  const sideBenefits = [
+    { icon: LayoutDashboard, title: t.howItWorks.benefits[0] },
+    { icon: FileText, title: t.howItWorks.benefits[1] },
+    { icon: Users, title: t.howItWorks.benefits[2] },
+    { icon: Clock, title: t.howItWorks.benefits[3] },
+  ];
 
   return (
-    <section id="how-it-works" className="py-16 lg:py-24 relative bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        {/* Header */}
+    <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-[#EEEEEE]">
+      <div className="max-w-7xl mx-auto">
         <motion.div
-          className="max-w-3xl mx-auto text-center mb-16"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={headerVariants}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">Nasıl Çalışır?</h2>
-          <p className="text-lg text-muted-foreground">
-            Tedaarik size 4 basit ve otomatik adımda zaman ve para tasarrufu sağlar
+          <h2 className="text-4xl font-bold text-[#3B3B3B] mb-4">
+            {t.howItWorks.title}
+          </h2>
+          <p className="text-xl text-[#3B3B3B]/80 max-w-3xl mx-auto">
+            {t.howItWorks.subtitle}
           </p>
         </motion.div>
 
-        {/* Steps Grid */}
+        {/* Main UX Flow */}
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover={{
-                scale: 1.03,
-                y: -8,
-                transition: { type: "spring", stiffness: 400, damping: 17 }
-              }}
-              className="glass-card rounded-2xl p-8 space-y-6 relative group cursor-pointer overflow-hidden"
-            >
-              {/* Step Number */}
-              <motion.div
-                className="text-6xl font-bold text-highlight/30 absolute top-4 right-4"
-                variants={numberVariants}
-                whileHover={{
-                  scale: 1.1,
-                  opacity: 0.5,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                {step.number}
-              </motion.div>
-
-              {/* Icon */}
-              <motion.div
-                className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-muted group-hover:bg-accent/10 transition-colors duration-300"
-                variants={iconVariants}
-                whileHover={{
-                  rotate: [0, -10, 10, -5, 0],
-                  transition: { duration: 0.5 }
-                }}
-              >
-                <step.icon className="h-8 w-8 text-accent" />
-              </motion.div>
-
-              {/* Content */}
-              <div className="space-y-3 relative z-10">
-                <motion.h3
-                  className="text-base font-bold leading-tight text-foreground group-hover:text-accent transition-colors duration-300"
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                >
-                  {step.title}
-                </motion.h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-
-              {/* Connecting line between steps (for larger screens) */}
-              {index < steps.length - 1 && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16 max-w-5xl mx-auto">
+            {mainSteps.map((step, index) => {
+              const Icon = step.icon;
+              return (
                 <motion.div
-                  className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-accent/30"
-                  initial={{ scaleX: 0 }}
-                  animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                  transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
-                  style={{ originX: 0 }}
-                />
-              )}
+                  key={index}
+                  className="relative bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <motion.div
+                    className="bg-[#158F86]/10 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-4"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Icon className="h-8 w-8 text-[#158F86]" />
+                  </motion.div>
 
-              {/* Hover gradient effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-              />
-            </motion.div>
-          ))}
+                  <h3 className="text-base font-semibold text-[#3B3B3B]">
+                    {step.title}
+                  </h3>
+
+                  {index < mainSteps.length - 1 && (
+                    <div className="hidden md:flex absolute top-1/2 left-full transform -translate-y-1/2 w-16 items-center justify-center text-[#158F86] z-10">
+                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
         </motion.div>
 
-        {/* Result Banner */}
+        {/* Side Benefits */}
         <motion.div
-          className="max-w-4xl mx-auto mt-16 glass-card-strong rounded-2xl p-8 text-center space-y-4 overflow-hidden"
-          variants={bannerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          whileHover={{
-            scale: 1.01,
-            transition: { type: "spring", stiffness: 300, damping: 20 }
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <motion.p
-            className="text-2xl font-bold text-accent"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 1, duration: 0.5 }}
-          >
-            Sonuç:{" "}
-            <motion.span
-              className="inline-block"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-              transition={{ delay: 1.2, duration: 0.4 }}
-            >
-              %80'e varan zaman
-            </motion.span>{" "}
-            ve{" "}
-            <motion.span
-              className="inline-block"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-              transition={{ delay: 1.4, duration: 0.4 }}
-            >
-              %20'ye varan para tasarrufu
-            </motion.span>
-          </motion.p>
-          <motion.p
-            className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ delay: 1.6, duration: 0.5 }}
-          >
-            Tedaarik, tedarik sürecinizin her adımını otomatikleştirir ve size sadece stratejik kararlar almanız için
-            zaman kazandırır. Artık faturalarla uğraşmak yerine, işinizi büyütmeye odaklanın.
-          </motion.p>
+          <div className="border-t border-gray-300 pt-12">
+            <h3 className="text-2xl font-bold text-[#3B3B3B] text-center mb-8">
+              {t.howItWorks.benefitsTitle}
+            </h3>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {sideBenefits.map((benefit, index) => {
+                const Icon = benefit.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    whileHover={{ y: -3 }}
+                  >
+                    <motion.div
+                      className="bg-[#158F86]/10 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Icon className="h-6 w-6 text-[#158F86]" />
+                    </motion.div>
+                    <p className="text-sm font-medium text-[#3B3B3B]">
+                      {benefit.title}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
-};
+}
 
 export default HowItWorks;
