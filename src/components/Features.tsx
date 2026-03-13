@@ -2,12 +2,19 @@ import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
 import { ScanLine, Calculator, TrendingDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import costAnalysisImage from '@/assets/feature-cost-analysis.png';
-import recipeCostImage from '@/assets/feature-recipe-cost.png';
-import priceComparisonImage from '@/assets/feature-price-comparison.png';
+import costAnalysisEn from '@/assets/feature-cost-analysis.png';
+import recipeCostEn from '@/assets/feature-recipe-cost.png';
+import priceComparisonEn from '@/assets/feature-price-comparison.png';
+import costAnalysisTr from '@/assets/feature-cost-analysis-tr.png';
+import recipeCostTr from '@/assets/feature-recipe-cost-tr.png';
+import priceComparisonTr from '@/assets/feature-price-comparison-tr.png';
 
 export function Features() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isTr = language === 'tr';
+  const costAnalysisImage = isTr ? costAnalysisTr : costAnalysisEn;
+  const recipeCostImage = isTr ? recipeCostTr : recipeCostEn;
+  const priceComparisonImage = isTr ? priceComparisonTr : priceComparisonEn;
 
   const features = [
     {

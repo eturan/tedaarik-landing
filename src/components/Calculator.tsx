@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DollarSign, Clock, CheckCircle2, ArrowRight, ChevronLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -6,11 +6,22 @@ import { capture } from '@/lib/posthog';
 
 const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/d18s1dnp5ayjgdjquypynu6i21vxobw5";
 
+const rangeConfig = {
+  en: { min: 1000, max: 20000, step: 500, default: 10000 },
+  tr: { min: 100000, max: 1000000, step: 5000, default: 500000 },
+};
+
 export function Calculator() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const config = rangeConfig[language];
   const [step, setStep] = useState(1);
   const [invoices, setInvoices] = useState(250);
-  const [monthlyVolume, setMonthlyVolume] = useState(10000);
+  const [monthlyVolume, setMonthlyVolume] = useState(config.default);
+
+  useEffect(() => {
+    setMonthlyVolume(config.default);
+  }, [language]);
+
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -19,7 +30,7 @@ export function Calculator() {
   const savingsRate = 0.20;
   const monthlySavings = monthlyVolume * savingsRate;
   const yearlySavings = monthlySavings * 12;
-  const timePerInvoice = 10;
+  const timePerInvoice = 5;
   const checkTimePerInvoice = 1;
   const timeSavedPerInvoice = timePerInvoice - checkTimePerInvoice;
   const monthlyTimeSavedMinutes = invoices * timeSavedPerInvoice;
@@ -168,9 +179,9 @@ export function Calculator() {
 
                     <input
                       type="range"
-                      min="1000"
-                      max="20000"
-                      step="500"
+                      min={config.min}
+                      max={config.max}
+                      step={config.step}
                       value={monthlyVolume}
                       onChange={(e) => setMonthlyVolume(Number(e.target.value))}
                       className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#158F86] hover:accent-[#117A71] transition-all"
@@ -212,6 +223,13 @@ export function Calculator() {
                     <div className="grid md:grid-cols-2 gap-8 md:gap-12 h-full items-center">
                       <div className="space-y-6">
                         <div>
+                          <button
+                            onClick={handleBack}
+                            className="text-[#3B3B3B]/60 hover:text-[#3B3B3B] text-sm font-medium flex items-center gap-1 transition-colors mb-3"
+                          >
+                            <ChevronLeft className="h-4 w-4" />
+                            {t.calculator.step2.back}
+                          </button>
                           <h3 className="text-2xl font-bold text-[#3B3B3B] mb-2">{t.calculator.step3.title}</h3>
                           <p className="text-[#3B3B3B]/80">{t.calculator.step3.basedOn1}{invoices}{t.calculator.step3.basedOn2}{monthlyVolume.toLocaleString()}{t.calculator.step3.basedOn3}</p>
                         </div>

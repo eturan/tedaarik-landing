@@ -2,10 +2,12 @@ import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
 import { ArrowRight, CheckCircle, Calculator } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import heroImage from '@/assets/hero-dashboard.png';
+import heroImageEn from '@/assets/hero-dashboard.png';
+import heroImageTr from '@/assets/hero-dashboard-tr.png';
 
 export function Hero() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const heroImage = language === 'tr' ? heroImageTr : heroImageEn;
 
   const scrollToCalculator = () => {
     const calculatorSection = document.getElementById('calculator');
