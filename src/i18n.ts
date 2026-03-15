@@ -11,6 +11,9 @@ export const translations = {
       blog: 'Blog',
       startTrial: 'Start Free Trial',
     },
+    logoBelt: {
+      title: 'Trusted by smart restaurants',
+    },
     hero: {
       badge: 'Food prices change every week. Tedaarik helps you keep up.',
       title: 'The AI Assistant That',
@@ -117,7 +120,7 @@ export const translations = {
       title: 'How Does It Work?',
       subtitle: 'A simple flow that saves you hours every week',
       steps: [
-        'Upload invoices easily in seconds',
+        'Upload invoices effortlessly in seconds',
         'Ingredient & recipe costs update automatically',
         'Compare prices easily & save money'
       ],
@@ -202,10 +205,13 @@ export const translations = {
       blog: 'Blog',
       startTrial: 'Ücretsiz Dene',
     },
+    logoBelt: {
+      title: 'Akıllı restoranların tercihi',
+    },
     hero: {
       badge: 'Sürekli değişen gıda fiyatlarını Tedaarik\'le yakalayın.',
       title: 'Restoranınızın',
-      titleHighlight: 'Yapay Zeka Müdür Yardımcısı',
+      titleHighlight: 'Dijital Müdür Yardımcısı',
       description: 'Excel\'e veri girmeyi bırakın. Tedaarik faturaları gerçek birim maliyetlere dönüştürür, reçete maliyetlerinizi güncel tutar ve emek harcamadan satın alma sürecinde tasarruf etmenizi sağlar.',
       startTrial: 'Ücretsiz Dene',
       estimateSavings: 'Tasarrufu Hesapla',
@@ -229,7 +235,7 @@ export const translations = {
         li2: 'Manuel fatura veri girişi gecelerinizi tüketir'
       },
       point3: {
-        title: '"Reçete maliyetleri 3 ayda bir güncellenir."',
+        title: '"Reçete maliyetleri güncellenemez."',
         subtitle: 'Malzeme maliyetleri artar, ancak menü fiyatlarınız bazen aylarca aynı kalır.',
         li1: 'Reçete kartlarını güncellemek sonsuza dek sürer',
         li2: 'Hangi yemeklerin gerçekten karlı olduğunu net göremezsiniz'
@@ -249,8 +255,8 @@ export const translations = {
         title: 'Aylık Satın Alma Harcaması',
         desc: 'Ürün tedariği için aylık ortalama harcamanız nedir?',
         month: '/ ay',
-        rangeMin: '₺1k',
-        rangeMax: '₺20k+',
+        rangeMin: '₺100.000',
+        rangeMax: '₺1.000.000+',
         back: 'Geri',
         calculate: 'Tasarrufu Hesapla'
       },
@@ -308,7 +314,7 @@ export const translations = {
       title: 'Nasıl Çalışır?',
       subtitle: 'Size her hafta saatler kazandıran basit bir akış',
       steps: [
-        'Faturaları saniyeler içinde kolayca yükleyin',
+        'Faturaları saniyeler içinde zahmetsizce yükleyin',
         'Malzeme ve reçete maliyetleri otomatik olarak güncellensin',
         'Fiyatları kolayca karşılaştırıp tasarrufu edin'
       ],

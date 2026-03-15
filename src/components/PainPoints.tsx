@@ -75,8 +75,8 @@ export function PainPoints() {
                 <p className="text-sm text-[#3B3B3B]/80 font-medium mb-3 leading-relaxed">{point.subtitle}</p>
                 <ul className="space-y-2">
                   {point.points.map((item, itemIndex) => (
-                    <li key={itemIndex} className="text-sm text-[#3B3B3B]/70 flex items-start gap-2">
-                      <span className="text-[#4FB4B0] mt-1">•</span>
+                    <li key={itemIndex} className="text-sm text-[#3B3B3B]/70 flex items-start gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-[#4FB4B0] flex-shrink-0 mt-[0.4rem]" />
                       <span>{item}</span>
                     </li>
                   ))}

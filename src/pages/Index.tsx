@@ -1,10 +1,10 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
+import { LogoBelt } from "@/components/LogoBelt";
 import { PainPoints } from "@/components/PainPoints";
 import { Calculator } from "@/components/Calculator";
 import { Features } from "@/components/Features";
 import { HowItWorks } from "@/components/HowItWorks";
-import { Testimonials } from "@/components/Testimonials";
 import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
 import { CTA } from "@/components/CTA";
@@ -16,11 +16,11 @@ const Index = () => {
       <Navigation />
       <main>
         <Hero />
+        <LogoBelt />
         <PainPoints />
         <Calculator />
         <Features />
         <HowItWorks />
-        <Testimonials />
         <Pricing />
         <FAQ />
         <CTA />
