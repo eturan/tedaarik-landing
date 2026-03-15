@@ -47,7 +47,7 @@ export function CTA() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <motion.a
-            href="https://app.tedaarik.com/login"
+            href="https://app.tedaarik.com/signup"
             className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all font-bold text-lg shadow-lg flex items-center justify-center gap-2 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

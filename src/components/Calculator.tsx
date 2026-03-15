@@ -314,7 +314,7 @@ export function Calculator() {
                       <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 max-w-md w-full">
                         <p className="text-[#3B3B3B] font-medium mb-4">{t.calculator.step3.successActionDesc}</p>
                         <a
-                          href="https://app.tedaarik.com/login"
+                          href="https://app.tedaarik.com/signup"
                           className="block w-full bg-[#158F86] text-white px-8 py-3 rounded-xl hover:bg-[#117A71] transition-colors font-medium text-lg shadow-lg text-center"
                         >
                           {t.calculator.step3.startTrialBtn}
