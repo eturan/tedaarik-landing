@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { capture } from '@/lib/posthog';
 
-const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/d18s1dnp5ayjgdjquypynu6i21vxobw5";
+const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/a5i9qvabclxwpuft0ao3wewombopcxge";
 
 const rangeConfig = {
   en: { min: 1000, max: 20000, step: 500, default: 10000 },
@@ -54,15 +54,14 @@ export function Calculator() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-make-apikey": "tedaarik-masked-api-key-value",
         },
         body: JSON.stringify({
-          email,
+          yearlySavings,
+          monthlyTimeSavedHours: Math.round(monthlyTimeSavedHours),
+          yearlyTimeSavedHours: Math.round(yearlyTimeSavedHours),
           invoices,
           monthlyVolume,
-          yearlySavings,
-          yearlyTimeSavedHours: Math.round(yearlyTimeSavedHours),
-          source: "calculator",
+          email,
         }),
       });
 
