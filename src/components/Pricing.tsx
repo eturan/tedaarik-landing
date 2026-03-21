@@ -3,7 +3,9 @@ import { Check, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Pricing() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const price = language === 'tr' ? '₺1.400' : '$30';
+  const originalPrice = language === 'tr' ? '₺2.800' : '$60';
 
   return (
     <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
@@ -39,10 +41,12 @@ export function Pricing() {
                 {t.pricing.limitedOffer}
               </div>
               <div className="flex items-center justify-center gap-3 mb-2">
-                <span className="text-6xl font-bold text-[#3B3B3B] tracking-tight">$30</span>
-                <span className="text-[#3B3B3B]/40 text-2xl line-through font-medium">$60</span>
+                <span className="text-6xl font-bold text-[#3B3B3B] tracking-tight">{price}</span>
+                <span className="text-[#3B3B3B]/40 text-2xl line-through font-medium">{originalPrice}</span>
               </div>
-              <div className="text-[#3B3B3B]/60 font-medium mb-1">{t.pricing.perMonth}</div>
+              <div className="text-[#3B3B3B]/60 font-medium mb-1">
+                {t.pricing.perMonth} +{language === 'tr' ? 'KDV' : 'VAT'}
+              </div>
               <p className="text-sm text-[#158F86] font-medium mt-2">
                 {t.pricing.saveOffer}
               </p>
