@@ -88,7 +88,7 @@ export function Navigation() {
             </div>
 
             <motion.a
-              href="https://app.tedaarik.com/signup"
+              href={`https://app.tedaarik.com/signup?lang=${language}`}
               onClick={() => trackStartTrial()}
               className="bg-[#158F86] text-white px-6 py-2.5 rounded-full hover:bg-[#117A71] transition-colors font-semibold"
               whileHover={{ scale: 1.05 }}
@@ -154,7 +154,7 @@ export function Navigation() {
               </div>
 
               <a
-                href="https://app.tedaarik.com/signup"
+                href={`https://app.tedaarik.com/signup?lang=${language}`}
                 onClick={() => trackStartTrial()}
                 className="block bg-[#158F86] text-white px-5 py-2.5 rounded-full text-center font-semibold"
               >
