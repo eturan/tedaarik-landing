@@ -1,6 +1,7 @@
 import { ArrowRight, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { trackStartTrial } from '@/lib/meta-pixel';
 
 export function CTA() {
   const { t } = useLanguage();
@@ -48,6 +49,7 @@ export function CTA() {
         >
           <motion.a
             href="https://app.tedaarik.com/signup"
+            onClick={() => trackStartTrial()}
             className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all font-bold text-lg shadow-lg flex items-center justify-center gap-2 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

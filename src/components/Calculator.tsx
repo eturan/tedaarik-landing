@@ -3,6 +3,7 @@ import { DollarSign, Clock, CheckCircle2, ArrowRight, ChevronLeft } from 'lucide
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { capture } from '@/lib/posthog';
+import { trackLead, trackStartTrial } from '@/lib/meta-pixel';
 
 const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/a5i9qvabclxwpuft0ao3wewombopcxge";
 
@@ -67,6 +68,13 @@ export function Calculator() {
 
       capture('calculator_email_submitted', {
         email,
+        invoices,
+        monthly_volume: monthlyVolume,
+        yearly_savings: yearlySavings,
+      });
+
+      trackLead({
+        content_name: 'savings_report',
         invoices,
         monthly_volume: monthlyVolume,
         yearly_savings: yearlySavings,
@@ -314,6 +322,7 @@ export function Calculator() {
                         <p className="text-[#3B3B3B] font-medium mb-4">{t.calculator.step3.successActionDesc}</p>
                         <a
                           href="https://app.tedaarik.com/signup"
+                          onClick={() => trackStartTrial()}
                           className="block w-full bg-[#158F86] text-white px-8 py-3 rounded-xl hover:bg-[#117A71] transition-colors font-medium text-lg shadow-lg text-center"
                         >
                           {t.calculator.step3.startTrialBtn}
