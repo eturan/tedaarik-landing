@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Check, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { buildSignupUrl } from '@/lib/utm';
 
 export function Pricing() {
   const { t, language } = useLanguage();
@@ -71,7 +72,7 @@ export function Pricing() {
             </ul>
 
             <motion.a
-              href={`https://app.tedaarik.com/signup?lang=${language}`}
+              href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
               className="w-full bg-[#158F86] text-white py-4 px-6 rounded-xl font-bold hover:bg-[#117A71] hover:ring-4 hover:ring-[#158F86]/30 transition-all shadow-lg hover:shadow-[#158F86]/40 flex items-center justify-center gap-2 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
