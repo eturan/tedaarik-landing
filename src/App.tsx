@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { captureUtmParams } from "@/lib/utm";
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
@@ -19,6 +20,15 @@ import Hakkimizda from "./pages/Hakkimizda";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+// Capture UTM params once on initial page load
+const UtmCapture = () => {
+  useEffect(() => {
+    captureUtmParams();
+  }, []);
+
+  return null;
+};
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -38,6 +48,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <UtmCapture />
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />

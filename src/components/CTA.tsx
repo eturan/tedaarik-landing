@@ -1,6 +1,7 @@
 import { ArrowRight, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { buildSignupUrl } from '@/lib/utm';
 
 export function CTA() {
   const { t, language } = useLanguage();
@@ -47,7 +48,7 @@ export function CTA() {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <motion.a
-            href={`https://app.tedaarik.com/signup?lang=${language}`}
+            href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
             className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all font-bold text-lg shadow-lg flex items-center justify-center gap-2 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
