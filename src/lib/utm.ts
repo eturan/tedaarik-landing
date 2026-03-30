@@ -4,6 +4,7 @@ const UTM_KEYS = [
   'utm_campaign',
   'utm_term',
   'utm_content',
+  'utm_id',
   'fbclid',
   'gclid',
 ] as const;
@@ -60,4 +61,10 @@ export function buildSignupUrl(baseUrl: string): string {
   }
 
   return url.toString();
+}
+
+// Auto-capture on module load so params are available before any component renders.
+// captureUtmParams() is idempotent — only writes when UTM params are present in the URL.
+if (typeof window !== 'undefined') {
+  captureUtmParams();
 }
