@@ -9,8 +9,16 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+function getInitialLanguage(): Language {
+  const params = new URLSearchParams(window.location.search);
+  const langParam = params.get('lang');
+  if (langParam === 'tr' || langParam === 'en') return langParam;
+  if (navigator.language.startsWith('tr')) return 'tr';
+  return 'tr';
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('tr');
+  const [language, setLanguage] = useState<Language>(getInitialLanguage);
 
   useEffect(() => {
     document.documentElement.lang = language;
