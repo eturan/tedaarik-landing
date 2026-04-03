@@ -17,6 +17,7 @@ import TeslimatVeIade from "./pages/TeslimatVeIade";
 import OnBilgilendirme from "./pages/OnBilgilendirme";
 import KabulVeOnay from "./pages/KabulVeOnay";
 import Hakkimizda from "./pages/Hakkimizda";
+import IndexB from "./pages/IndexB";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/lp-b" element={<IndexB />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/gizlilik-politikasi" element={<GizlilikPolitikasi />} />
