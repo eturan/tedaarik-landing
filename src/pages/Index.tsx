@@ -11,10 +11,12 @@ import { FAQ } from "@/components/FAQ";
 import { CTA } from "@/components/CTA";
 import Footer from "@/components/Footer";
 import { trackExperiment } from "@/lib/experiment";
+import { initScrollTracking } from "@/lib/scroll-tracking";
 
 const Index = () => {
   useEffect(() => {
     trackExperiment();
+    return initScrollTracking();
   }, []);
 
   return (

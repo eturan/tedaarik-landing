@@ -2,6 +2,7 @@ import { ArrowRight, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { buildSignupUrl } from '@/lib/utm';
+import { trackCtaClicked } from '@/lib/posthog';
 
 export function CTA() {
   const { t, language } = useLanguage();
@@ -49,6 +50,7 @@ export function CTA() {
         >
           <motion.a
             href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
+            onClick={() => trackCtaClicked(t.cta.startTrial, 'cta-bottom')}
             className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all font-bold text-lg shadow-lg flex items-center justify-center gap-2 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { DollarSign, Clock, CheckCircle2, ArrowRight, ChevronLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { capture } from '@/lib/posthog';
+import { capture, trackCtaClicked } from '@/lib/posthog';
 import { buildSignupUrl } from '@/lib/utm';
 
 const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/a5i9qvabclxwpuft0ao3wewombopcxge";
@@ -315,6 +315,7 @@ export function Calculator() {
                         <p className="text-[#3B3B3B] font-medium mb-4">{t.calculator.step3.successActionDesc}</p>
                         <a
                           href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
+                          onClick={() => trackCtaClicked('calculator_signup', 'calculator')}
                           className="block w-full bg-[#158F86] text-white px-8 py-3 rounded-xl hover:bg-[#117A71] transition-colors font-medium text-lg shadow-lg text-center"
                         >
                           {t.calculator.step3.startTrialBtn}
