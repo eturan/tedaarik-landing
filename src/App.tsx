@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "@/lib/utm"; // Side-effect import: captures UTM params at module load
 import Index from "./pages/Index";
 import Blog from "./pages/Blog";
@@ -38,6 +39,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <SpeedInsights />
         <BrowserRouter>
           <ScrollToTop />
           <Routes>
