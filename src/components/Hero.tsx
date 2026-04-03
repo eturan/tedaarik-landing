@@ -28,29 +28,28 @@ export function Hero() {
             transition={{ duration: 0.6 }}
           >
             <motion.div
-              className="inline-flex items-center gap-2 bg-[#158F86]/10 border border-[#158F86]/20 rounded-full px-4 py-1.5"
+              className="inline-flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 rounded-full px-4 py-1.5"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 0.2 }}
             >
-              <span className="w-2 h-2 rounded-full bg-[#158F86] animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
               <span className="text-[#3B3B3B] text-sm font-medium">
                 {t.hero.badge}
               </span>
             </motion.div>
 
             <motion.h1
-              className="text-5xl lg:text-6xl font-bold text-[#3B3B3B] leading-tight tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#3B3B3B] leading-tight tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              {t.hero.title} <br />
-              <span className="text-[#158F86]">{t.hero.titleHighlight}</span>
+              {t.hero.headline}
             </motion.h1>
 
             <motion.p
-              className="text-xl text-[#3B3B3B]/80 leading-relaxed max-w-xl"
+              className="text-lg sm:text-xl text-[#3B3B3B]/80 leading-relaxed max-w-xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -59,35 +58,42 @@ export function Hero() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 pt-2"
+              className="flex flex-col gap-3 pt-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <motion.a
-                href={`https://app.tedaarik.com/signup?lang=${language}`}
-                onClick={() => trackStartTrial()}
-                className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all shadow-lg hover:shadow-[#158F86]/20 flex items-center justify-center gap-2 group font-semibold text-lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {t.hero.startTrial}
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </motion.a>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <motion.button
+                  type="button"
+                  onClick={scrollToCalculator}
+                  className="bg-rose-500 text-white px-8 py-4 rounded-xl hover:bg-rose-600 transition-all shadow-lg hover:shadow-rose-500/25 flex items-center justify-center gap-2 font-semibold text-lg"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Calculator className="h-5 w-5 shrink-0" />
+                  {t.hero.estimateSavings}
+                </motion.button>
 
-              <motion.button
-                onClick={scrollToCalculator}
-                className="bg-white text-[#3B3B3B] border-2 border-gray-200 px-8 py-4 rounded-xl hover:border-[#158F86] hover:text-[#158F86] transition-colors flex items-center justify-center gap-2 font-semibold text-lg"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Calculator className="h-5 w-5" />
-                {t.hero.estimateSavings}
-              </motion.button>
+                <motion.a
+                  href={`https://app.tedaarik.com/signup?lang=${language}`}
+                  onClick={() => trackStartTrial()}
+                  className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all shadow-lg hover:shadow-[#158F86]/20 flex items-center justify-center gap-2 group font-semibold text-lg"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {t.hero.startTrial}
+                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform shrink-0" />
+                </motion.a>
+              </div>
+
+              <p className="text-sm text-[#3B3B3B]/50 max-w-xl leading-snug">
+                {t.hero.trustLine}
+              </p>
             </motion.div>
 
             <motion.div
-              className="flex items-center gap-6 text-sm text-[#3B3B3B]/60 pt-4"
+              className="flex items-center gap-6 text-sm text-[#3B3B3B]/60 pt-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
