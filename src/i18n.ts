@@ -112,19 +112,20 @@ export const translations = {
     },
     howItWorks: {
       title: 'How Does It Work?',
-      subtitle: 'A simple flow that saves you hours every week',
-      steps: [
-        'Upload invoices effortlessly in seconds',
-        'Ingredient & recipe costs update automatically',
-        'Compare prices easily & save money'
-      ],
-      benefitsTitle: 'Plus these benefits along the way',
-      benefits: [
-        'Clear dashboard',
-        'Automated bookkeeping',
-        'Easy team access',
-        'Time saving'
-      ]
+      subtitle: 'You upload your invoices. Tedaarik finds where your cash is leaking.',
+      step1: {
+        title: 'Upload Your Invoices',
+        desc: "Snap a photo, forward an email, or sync your e-invoices. That's it — our AI reads every line item for you.",
+      },
+      step2: {
+        title: 'Tedaarik Scans for Leaks',
+        desc: "Price hikes, hidden deviations, shrinking margins — the system catches everything that's quietly costing you money.",
+      },
+      step3: {
+        title: 'Stop Overpaying',
+        desc: "Negotiate with real data, adjust your menu prices, or switch suppliers — every decision backed by numbers, not guesswork.",
+      },
+      footer: "That's it. No manual entry, no consultants, no spreadsheets.",
     },
     testimonials: {
       title: 'Trusted by Kitchens Everywhere',
@@ -300,19 +301,20 @@ export const translations = {
     },
     howItWorks: {
       title: 'Nasıl Çalışır?',
-      subtitle: 'Size her hafta saatler kazandıran basit bir akış',
-      steps: [
-        'Faturaları saniyeler içinde zahmetsizce yükleyin',
-        'Malzeme ve reçete maliyetleri otomatik olarak güncellensin',
-        'Fiyatları kolayca karşılaştırıp tasarrufu edin'
-      ],
-      benefitsTitle: 'Ayrıca bu avantajlar',
-      benefits: [
-        'Basit kontrol paneli',
-        'Otomatik ön muhasebe',
-        'Kolay ekip erişimi',
-        'Zaman tasarrufu'
-      ]
+      subtitle: 'Siz faturalarınızı yükleyin. Tedaarik paranızın nereden sızdığını bulsun.',
+      step1: {
+        title: 'Faturalarınızı Yükleyin',
+        desc: 'Fotoğraf çekin, e-posta iletin veya e-faturalarınızı bağlayın. Yapmanız gereken tek şey bu — yapay zekamız her satırı sizin yerinize okur.',
+      },
+      step2: {
+        title: 'Tedaarik Sızıntıları Tarar',
+        desc: 'Fiyat artışları, gizli sapmalar ve eriyen marjlar — sistem sizi sessizce zarara uğratan her şeyi otomatik olarak yakalar.',
+      },
+      step3: {
+        title: 'Fazla Ödemeyi Durdurun',
+        desc: 'Gerçek verilerle pazarlık yapın, menü fiyatlarınızı güncelleyin veya tedarikçi değiştirin — her karar tahmine değil, rakamlara dayansın.',
+      },
+      footer: 'Hepsi bu. Manuel veri girişi yok, danışman yok, Excel yok.',
     },
     testimonials: {
       title: 'Tedaarik Hakkındaki Yorumlar',
