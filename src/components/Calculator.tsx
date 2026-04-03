@@ -1,84 +1,101 @@
-import { useState, useEffect } from 'react';
-import { DollarSign, Clock, CheckCircle2, ArrowRight, ChevronLeft } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowRight, ChevronLeft, Sandwich, Coffee, Flame, Utensils, Store, Croissant } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { capture } from '@/lib/posthog';
-import { trackLead, trackStartTrial } from '@/lib/meta-pixel';
+import { trackStartTrial } from '@/lib/meta-pixel';
 
 const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/a5i9qvabclxwpuft0ao3wewombopcxge";
 
-const rangeConfig = {
-  en: { min: 1000, max: 20000, step: 500, default: 10000 },
-  tr: { min: 100000, max: 1000000, step: 5000, default: 500000 },
+const iconMap = {
+  fast_food: Sandwich,
+  cafe: Coffee,
+  kebap: Flame,
+  restaurant: Utensils,
+  esnaf: Store,
+  bakery: Croissant,
 };
+
+const rangeConfig = {
+  en: { min: 10000, max: 250000, step: 5000, default: 130000 },
+  tr: { min: 100000, max: 5000000, step: 100000, default: 2500000 },
+};
+
+const CUISINE_TYPES = [
+  { id: 'fast_food', tr: 'Fast Food (Burger, Döner)', en: 'Fast Food', cogs: 0.29 },
+  { id: 'cafe', tr: 'Kafe / Kahve', en: 'Cafe / Coffee Shop', cogs: 0.30 },
+  { id: 'kebap', tr: 'Kebapçı / Ocakbaşı', en: 'Kebab / Grill', cogs: 0.38 },
+  { id: 'restaurant', tr: 'Restoran / Dünya Mutfağı', en: 'Restaurant', cogs: 0.33 },
+  { id: 'esnaf', tr: 'Esnaf Lokantası / Büfe', en: 'Traditional / Buffet', cogs: 0.34 },
+  { id: 'bakery', tr: 'Pastane / Unlu Mamul', en: 'Bakery', cogs: 0.28 },
+] as const;
+
+type CuisineType = typeof CUISINE_TYPES[number];
 
 export function Calculator() {
   const { t, language } = useLanguage();
   const config = rangeConfig[language];
+
   const [step, setStep] = useState(1);
-  const [invoices, setInvoices] = useState(250);
-  const [monthlyVolume, setMonthlyVolume] = useState(config.default);
-
-  useEffect(() => {
-    setMonthlyVolume(config.default);
-  }, [language]);
-
+  const [monthlyRevenue, setMonthlyRevenue] = useState(config.default);
+  const [selectedCuisine, setSelectedCuisine] = useState<CuisineType | null>(null);
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Calculate potential savings
-  const savingsRate = 0.20;
-  const monthlySavings = monthlyVolume * savingsRate;
-  const yearlySavings = monthlySavings * 12;
-  const timePerInvoice = 5;
-  const checkTimePerInvoice = 1;
-  const timeSavedPerInvoice = timePerInvoice - checkTimePerInvoice;
-  const monthlyTimeSavedMinutes = invoices * timeSavedPerInvoice;
-  const monthlyTimeSavedHours = monthlyTimeSavedMinutes / 60;
-  const yearlyTimeSavedHours = monthlyTimeSavedHours * 12;
+  const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleNext = () => {
-    setStep(step + 1);
+  useEffect(() => {
+    setMonthlyRevenue(rangeConfig[language].default);
+  }, [language]);
+
+  useEffect(() => {
+    return () => {
+      if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current);
+    };
+  }, []);
+
+  // Leak engine — guard against null cuisine
+  const estimatedSpend = selectedCuisine ? monthlyRevenue * selectedCuisine.cogs : 0;
+  const totalMonthlyLeak = estimatedSpend * 0.20;
+  const yearlyLeak = totalMonthlyLeak * 12;
+  const leakBreakdown = {
+    overpayment: estimatedSpend * 0.13,
+    waste: estimatedSpend * 0.05,
+    admin: estimatedSpend * 0.02,
   };
 
-  const handleBack = () => {
-    setStep(step - 1);
+  const handleNext = () => setStep(step + 1);
+  const handleBack = () => setStep(step - 1);
+
+  const handleCuisineSelect = (cuisine: CuisineType) => {
+    setSelectedCuisine(cuisine);
+    if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current);
+    advanceTimerRef.current = setTimeout(() => setStep(2), 300);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedCuisine) return;
     setIsSubmitting(true);
 
     try {
       await fetch(MAKE_WEBHOOK_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          yearlySavings,
-          monthlyTimeSavedHours: Math.round(monthlyTimeSavedHours),
-          yearlyTimeSavedHours: Math.round(yearlyTimeSavedHours),
-          invoices,
-          monthlyVolume,
+          monthlyRevenue,
+          cuisineId: selectedCuisine.id,
+          estimatedSpend,
+          monthlyLeak: totalMonthlyLeak,
+          yearlyLeak,
           email,
         }),
       });
 
-      capture('calculator_email_submitted', {
-        email,
-        invoices,
-        monthly_volume: monthlyVolume,
-        yearly_savings: yearlySavings,
-      });
+      // TODO: Update PostHog event to 'calculator_leak_submitted' with new schema
+      // capture('calculator_leak_submitted', { email, monthly_revenue: monthlyRevenue, cuisine_id: selectedCuisine.id, estimated_spend: estimatedSpend, monthly_leak: totalMonthlyLeak, yearly_leak: yearlyLeak });
 
-      trackLead({
-        content_name: 'savings_report',
-        invoices,
-        monthly_volume: monthlyVolume,
-        yearly_savings: yearlySavings,
-      });
+      // TODO: Re-enable trackLead with new leak schema after pixel audit
 
       setIsSubmitted(true);
     } catch (error) {
@@ -101,7 +118,6 @@ export function Calculator() {
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">
-          {/* Progress Bar */}
           <div className="h-1.5 bg-gray-100 w-full">
             <motion.div
               className="h-full bg-[#158F86]"
@@ -113,6 +129,8 @@ export function Calculator() {
 
           <div className="p-6 md:p-10 flex-grow flex flex-col justify-center">
             <AnimatePresence mode="wait">
+
+              {/* Step 1 — Cuisine Selection */}
               {step === 1 && (
                 <motion.div
                   key="step1"
@@ -127,41 +145,32 @@ export function Calculator() {
                     <p className="text-[#3B3B3B]/60">{t.calculator.step1.desc}</p>
                   </div>
 
-                  <div className="max-w-md mx-auto w-full pt-8 pb-4">
-                    <div className="relative mb-8">
-                      <div className="text-center">
-                        <span className="text-5xl font-bold text-[#158F86]">{invoices}</span>
-                        <span className="text-[#3B3B3B]/40 ml-2 text-lg">{t.calculator.step1.invoices}</span>
-                      </div>
-                    </div>
-
-                    <input
-                      type="range"
-                      min="10"
-                      max="500"
-                      step="10"
-                      value={invoices}
-                      onChange={(e) => setInvoices(Number(e.target.value))}
-                      className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#158F86] hover:accent-[#117A71] transition-all"
-                    />
-                    <div className="flex justify-between text-xs text-[#3B3B3B]/40 mt-2 font-medium">
-                      <span>10</span>
-                      <span>500+</span>
-                    </div>
-                  </div>
-
-                  <div className="flex justify-center pt-4">
-                    <button
-                      onClick={handleNext}
-                      className="bg-[#158F86] text-white px-8 py-3 rounded-xl hover:bg-[#117A71] transition-colors font-medium text-lg flex items-center gap-2 group"
-                    >
-                      {t.calculator.step1.next}
-                      <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </button>
+                  <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto">
+                    {CUISINE_TYPES.map((cuisine) => {
+                      const Icon = iconMap[cuisine.id];
+                      const isSelected = selectedCuisine?.id === cuisine.id;
+                      return (
+                        <button
+                          key={cuisine.id}
+                          onClick={() => handleCuisineSelect(cuisine)}
+                          className={`flex items-center gap-3 p-4 rounded-xl border-2 text-left transition-all duration-200 ${
+                            isSelected
+                              ? 'border-[#158F86] bg-[#158F86]/5 shadow-md -translate-y-1'
+                              : 'border-slate-200 bg-white opacity-80 hover:opacity-100 hover:border-slate-300'
+                          }`}
+                        >
+                          <Icon className={`h-6 w-6 shrink-0 transition-colors ${isSelected ? 'text-[#158F86]' : 'text-[#3B3B3B]/40'}`} />
+                          <span className={`text-sm font-medium transition-colors ${isSelected ? 'text-[#158F86]' : 'text-[#3B3B3B]'}`}>
+                            {cuisine[language]}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
 
+              {/* Step 2 — Monthly Revenue */}
               {step === 2 && (
                 <motion.div
                   key="step2"
@@ -179,8 +188,9 @@ export function Calculator() {
                   <div className="max-w-md mx-auto w-full pt-8 pb-4">
                     <div className="relative mb-8">
                       <div className="text-center">
-                        <span className="text-5xl font-bold text-[#158F86]">{t.calculator.currency}{monthlyVolume.toLocaleString()}</span>
-                        <span className="text-[#3B3B3B]/40 ml-2 text-lg">{t.calculator.step2.month}</span>
+                        <span className="text-5xl font-bold text-[#158F86]">
+                          {t.calculator.currency}{monthlyRevenue.toLocaleString()}
+                        </span>
                       </div>
                     </div>
 
@@ -189,8 +199,8 @@ export function Calculator() {
                       min={config.min}
                       max={config.max}
                       step={config.step}
-                      value={monthlyVolume}
-                      onChange={(e) => setMonthlyVolume(Number(e.target.value))}
+                      value={monthlyRevenue}
+                      onChange={(e) => setMonthlyRevenue(Number(e.target.value))}
                       className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#158F86] hover:accent-[#117A71] transition-all"
                     />
                     <div className="flex justify-between text-xs text-[#3B3B3B]/40 mt-2 font-medium">
@@ -211,13 +221,14 @@ export function Calculator() {
                       onClick={handleNext}
                       className="bg-[#158F86] text-white px-8 py-3 rounded-xl hover:bg-[#117A71] transition-colors font-medium text-lg flex items-center gap-2 group shadow-lg shadow-[#158F86]/20"
                     >
-                      {t.calculator.step2.calculate}
+                      {t.calculator.step2.next}
                       <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </motion.div>
               )}
 
+              {/* Step 3 — Leak Results + Email */}
               {step === 3 && (
                 <motion.div
                   key="step3"
@@ -227,8 +238,8 @@ export function Calculator() {
                   className="h-full"
                 >
                   {!isSubmitted ? (
-                    <div className="grid md:grid-cols-2 gap-8 md:gap-12 h-full items-center">
-                      <div className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-8 md:gap-12 h-full items-start">
+                      <div className="space-y-5">
                         <div>
                           <button
                             onClick={handleBack}
@@ -237,37 +248,44 @@ export function Calculator() {
                             <ChevronLeft className="h-4 w-4" />
                             {t.calculator.step2.back}
                           </button>
-                          <h3 className="text-2xl font-bold text-[#3B3B3B] mb-2">{t.calculator.step3.title}</h3>
-                          <p className="text-[#3B3B3B]/80">{t.calculator.step3.basedOn1}{invoices}{t.calculator.step3.basedOn2}{monthlyVolume.toLocaleString()}{t.calculator.step3.basedOn3}</p>
                         </div>
 
-                        <div className="bg-[#158F86]/10 rounded-xl p-6 border border-[#158F86]/20">
-                          <div className="flex items-center gap-3 mb-2">
-                            <DollarSign className="h-5 w-5 text-[#158F86]" />
-                            <span className="text-sm font-semibold text-[#158F86] uppercase tracking-wider">{t.calculator.step3.annualSavings}</span>
+                        {/* Hero — Monthly Leak */}
+                        <div className="bg-red-50 rounded-xl p-6 border border-red-200">
+                          <span className="text-sm font-semibold text-red-600 uppercase tracking-wider">
+                            {t.calculator.step3.leakLabel}
+                          </span>
+                          <div className="text-4xl font-bold text-red-600 mt-1">
+                            {t.calculator.currency}{Math.round(totalMonthlyLeak).toLocaleString()}
                           </div>
-                          <div className="text-4xl font-bold text-[#3B3B3B]">
-                            {t.calculator.currency}{yearlySavings.toLocaleString()}
-                          </div>
-                          <div className="text-sm text-[#158F86] mt-1 font-medium">
-                            {t.calculator.step3.extraProfit}{monthlySavings.toLocaleString()}{t.calculator.step3.extraProfit2}
+                          <div className="text-sm text-red-600/70 mt-2 font-medium">
+                            {t.calculator.step3.yearlyLeakLabel}: {t.calculator.currency}{Math.round(yearlyLeak).toLocaleString()}
                           </div>
                         </div>
 
-                        <div className="bg-gray-100 rounded-xl p-6 border border-gray-200">
-                          <div className="flex items-center gap-3 mb-2">
-                            <Clock className="h-5 w-5 text-[#3B3B3B]" />
-                            <span className="text-sm font-semibold text-[#3B3B3B] uppercase tracking-wider">{t.calculator.step3.timeReclaimed}</span>
+                        {/* Breakdown — credibility backbone */}
+                        <div className="space-y-2 px-1">
+                          <div className="flex justify-between text-sm text-gray-600">
+                            <span>{t.calculator.step3.breakdownOverpayment}</span>
+                            <span className="font-medium">{t.calculator.currency}{Math.round(leakBreakdown.overpayment).toLocaleString()}</span>
                           </div>
-                          <div className="text-4xl font-bold text-[#3B3B3B]">
-                            {Math.round(yearlyTimeSavedHours)}{t.calculator.step3.hours}
+                          <div className="flex justify-between text-sm text-gray-600">
+                            <span>{t.calculator.step3.breakdownWaste}</span>
+                            <span className="font-medium">{t.calculator.currency}{Math.round(leakBreakdown.waste).toLocaleString()}</span>
                           </div>
-                          <div className="text-sm text-[#3B3B3B]/80 mt-1 font-medium">
-                            ~{Math.round(monthlyTimeSavedHours)}{t.calculator.step3.hoursSaved}
+                          <div className="flex justify-between text-sm text-gray-600">
+                            <span>{t.calculator.step3.breakdownAdmin}</span>
+                            <span className="font-medium">{t.calculator.currency}{Math.round(leakBreakdown.admin).toLocaleString()}</span>
                           </div>
                         </div>
+
+                        {/* Disclaimer */}
+                        <p className="text-xs text-gray-400 leading-relaxed">
+                          {t.calculator.step3.disclaimer}
+                        </p>
                       </div>
 
+                      {/* Email capture */}
                       <div className="bg-gray-50 p-6 md:p-8 rounded-xl border border-gray-100">
                         <h4 className="text-lg font-bold text-[#3B3B3B] mb-4">{t.calculator.step3.emailTitle}</h4>
                         <p className="text-sm text-[#3B3B3B]/80 mb-6">
@@ -285,14 +303,14 @@ export function Calculator() {
                               required
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
-                              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#158F86] focus:border-[#158F86] outline-none transition-all"
+                              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all"
                               placeholder={t.calculator.step3.emailPlaceholder}
                             />
                           </div>
                           <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full bg-[#158F86] text-white px-6 py-3 rounded-lg hover:bg-[#117A71] transition-colors font-medium flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-md"
+                            className="w-full bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-md"
                           >
                             {isSubmitting ? t.calculator.step3.sending : t.calculator.step3.sendBtn}
                             {!isSubmitting && <ArrowRight className="h-4 w-4" />}
@@ -309,21 +327,21 @@ export function Calculator() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ type: "spring", duration: 0.5 }}
-                        className="w-20 h-20 bg-[#158F86]/10 rounded-full flex items-center justify-center mb-6"
+                        className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6"
                       >
-                        <CheckCircle2 className="h-10 w-10 text-[#158F86]" />
+                        <ArrowRight className="h-10 w-10 text-red-600" />
                       </motion.div>
                       <h3 className="text-3xl font-bold text-[#3B3B3B] mb-4">{t.calculator.step3.successTitle}</h3>
                       <p className="text-xl text-[#3B3B3B]/80 max-w-md mx-auto mb-8">
                         {t.calculator.step3.successDesc1}<strong>{email}</strong>.
                       </p>
 
-                      <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 max-w-md w-full">
+                      <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 max-w-md w-full">
                         <p className="text-[#3B3B3B] font-medium mb-4">{t.calculator.step3.successActionDesc}</p>
                         <a
                           href={`https://app.tedaarik.com/signup?lang=${language}`}
                           onClick={() => trackStartTrial()}
-                          className="block w-full bg-[#158F86] text-white px-8 py-3 rounded-xl hover:bg-[#117A71] transition-colors font-medium text-lg shadow-lg text-center"
+                          className="block w-full bg-red-600 text-white px-8 py-3 rounded-xl hover:bg-red-700 transition-colors font-medium text-lg shadow-lg text-center"
                         >
                           {t.calculator.step3.startTrialBtn}
                         </a>
@@ -335,6 +353,7 @@ export function Calculator() {
                   )}
                 </motion.div>
               )}
+
             </AnimatePresence>
           </div>
         </div>
