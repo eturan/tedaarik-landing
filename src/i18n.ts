@@ -227,13 +227,13 @@ export const translations = {
         title: '"Kağıt, WhatsApp, Excel... kaos."',
         subtitle: 'Teklifleri ve faturaları gerektiğinde bulmak, bir ürünü aramak çok zor.',
         li1: 'Faturalar kaybolur veya hasar görür',
-        li2: 'Manuel fatura veri girişi gecelerinizi tüketir'
+        li2: 'Manuel fatura veri girişi gecelerinizi tüketir ve hatalara sebep olur'
       },
       point3: {
         title: '"Reçete maliyetleri güncellenemez."',
         subtitle: 'Malzeme maliyetleri artar, ancak menü fiyatlarınız bazen aylarca aynı kalır.',
-        li1: 'Reçete kartlarını güncellemek sonsuza dek sürer',
-        li2: 'Hangi yemeklerin gerçekten karlı olduğunu net göremezsiniz'
+        li1: 'Reçete maliyetlerini güncellemek saatler hatta günler alır',
+        li2: 'Hangi tabakların karlı olduğunu net göremezsiniz'
       }
     },
     calculator: {
@@ -253,7 +253,7 @@ export const translations = {
         next: 'Kayıp Raporumu Gör',
       },
       step3: {
-        leakLabel: 'Aylık Nakit Kaybınız',
+        leakLabel: 'Aylık Para Kaybınız',
         yearlyLeakLabel: 'Yıllık Tahmini Kayıp',
         breakdownOverpayment: 'Tedarikçi Fiyat Farkı (%13)',
         breakdownWaste: 'Operasyonel Fire (%5)',
