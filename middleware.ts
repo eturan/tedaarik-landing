@@ -1,40 +1,42 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { next } from '@vercel/edge';
 
 const COOKIE_NAME = 'ab-variant';
 const COOKIE_MAX_AGE = 2592000; // 30 days in seconds
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+export default function middleware(request: Request) {
+  const url = new URL(request.url);
 
   // Only apply A/B testing to the root path
-  if (pathname !== '/') {
-    return NextResponse.next();
+  if (url.pathname !== '/') {
+    return next();
   }
 
-  const existingVariant = request.cookies.get(COOKIE_NAME)?.value;
+  // Read existing variant from cookie
+  const cookies = request.headers.get('cookie') || '';
+  const match = cookies.match(new RegExp(`${COOKIE_NAME}=([ab])`));
+  const existingVariant = match?.[1] as 'a' | 'b' | undefined;
   const variant = existingVariant || (Math.random() < 0.5 ? 'a' : 'b');
 
   // Variant A: serve the current landing page (no rewrite needed)
   if (variant === 'a') {
-    const response = NextResponse.next();
+    const response = next();
     if (!existingVariant) {
-      response.cookies.set(COOKIE_NAME, 'a', {
-        maxAge: COOKIE_MAX_AGE,
-        path: '/',
-      });
+      response.headers.append(
+        'Set-Cookie',
+        `${COOKIE_NAME}=a; Path=/; Max-Age=${COOKIE_MAX_AGE}; SameSite=Lax`
+      );
     }
     return response;
   }
 
   // Variant B: rewrite to /lp-b (user still sees "/" in browser)
-  const url = request.nextUrl.clone();
   url.pathname = '/lp-b';
-  const response = NextResponse.rewrite(url);
+  const response = next({ rewrite: url });
   if (!existingVariant) {
-    response.cookies.set(COOKIE_NAME, 'b', {
-      maxAge: COOKIE_MAX_AGE,
-      path: '/',
-    });
+    response.headers.append(
+      'Set-Cookie',
+      `${COOKIE_NAME}=b; Path=/; Max-Age=${COOKIE_MAX_AGE}; SameSite=Lax`
+    );
   }
   return response;
 }
