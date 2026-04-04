@@ -179,7 +179,7 @@ export const translations = {
       preInformation: 'Pre-Information',
       acceptApproval: 'Acceptance & Approval',
       cookiePolicy: 'Cookie Policy',
-      copyright: '© 2025 Tedaarik. All rights reserved.',
+      copyright: '© 2026 Tedaarik. All rights reserved.',
     }
   },
   tr: {
@@ -360,7 +360,7 @@ export const translations = {
       preInformation: 'Ön Bilgilendirme',
       acceptApproval: 'Kabul ve Onay',
       cookiePolicy: 'Çerez Politikası',
-      copyright: '© 2025 Tedaarik. Tüm hakları saklıdır.',
+      copyright: '© 2026 Tedaarik. Tüm hakları saklıdır.',
     }
   }
 };
