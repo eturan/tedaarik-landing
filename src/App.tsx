@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import "@/lib/utm"; // Side-effect import: captures UTM params at module load
-import Index from "./pages/Index";
+import Landing from "./pages/Landing";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import GizlilikPolitikasi from "./pages/GizlilikPolitikasi";
@@ -18,7 +18,6 @@ import TeslimatVeIade from "./pages/TeslimatVeIade";
 import OnBilgilendirme from "./pages/OnBilgilendirme";
 import KabulVeOnay from "./pages/KabulVeOnay";
 import Hakkimizda from "./pages/Hakkimizda";
-import IndexB from "./pages/IndexB";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,8 +43,7 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/lp-b" element={<IndexB />} />
+            <Route path="/" element={<Landing />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/gizlilik-politikasi" element={<GizlilikPolitikasi />} />
