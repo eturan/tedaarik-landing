@@ -63,11 +63,11 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-3">
                 <motion.button
                   type="button"
                   onClick={scrollToCalculator}
-                  className="bg-rose-500 text-white px-8 py-4 rounded-xl hover:bg-rose-600 transition-all shadow-lg hover:shadow-rose-500/25 flex items-center justify-center gap-2 font-semibold text-lg"
+                  className="w-full sm:w-auto bg-rose-500 text-white px-8 py-4 rounded-xl hover:bg-rose-600 transition-all shadow-lg hover:shadow-rose-500/25 flex items-center justify-center gap-2 font-bold text-lg"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -75,16 +75,19 @@ export function Hero() {
                   {t.hero.estimateSavings}
                 </motion.button>
 
-                <motion.a
-                  href={`https://app.tedaarik.com/signup?lang=${language}`}
-                  onClick={() => trackStartTrial()}
-                  className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all shadow-lg hover:shadow-[#158F86]/20 flex items-center justify-center gap-2 group font-semibold text-lg"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {t.hero.startTrial}
-                  <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform shrink-0" />
-                </motion.a>
+                <div className="flex items-center gap-3">
+                  <motion.a
+                    href={`https://app.tedaarik.com/signup?lang=${language}`}
+                    onClick={() => trackStartTrial()}
+                    className="text-[#158F86] font-semibold hover:text-[#117A71] transition-colors flex items-center gap-1.5 group"
+                    whileHover={{ x: 2 }}
+                  >
+                    {t.hero.startTrial}
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform shrink-0" />
+                  </motion.a>
+                  <span className="text-[#3B3B3B]/30">—</span>
+                  <span className="text-sm text-[#3B3B3B]/50">{t.hero.noCreditCard}</span>
+                </div>
               </div>
 
               <p className="text-sm text-[#3B3B3B]/50 max-w-xl leading-snug">
@@ -93,15 +96,11 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              className="flex items-center gap-6 text-sm text-[#3B3B3B]/60 pt-2"
+              className="flex items-center gap-4 text-sm text-[#3B3B3B]/60 pt-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-[#158F86]" />
-                <span>{t.hero.noCreditCard}</span>
-              </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-[#158F86]" />
                 <span>{t.hero.setupFast}</span>
