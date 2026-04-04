@@ -1,4 +1,4 @@
-import { next } from '@vercel/edge';
+import { next, rewrite } from '@vercel/edge';
 
 const COOKIE_NAME = 'ab-variant';
 const COOKIE_MAX_AGE = 2592000; // 30 days in seconds
@@ -31,7 +31,7 @@ export default function middleware(request: Request) {
 
   // Variant B: rewrite to /lp-b (user still sees "/" in browser)
   url.pathname = '/lp-b';
-  const response = next({ rewrite: url });
+  const response = rewrite(url);
   if (!existingVariant) {
     response.headers.append(
       'Set-Cookie',
