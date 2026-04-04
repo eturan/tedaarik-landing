@@ -6,6 +6,8 @@ const logos = [
   { name: 'DAGS Coffee' },
   { name: 'Lezzet Durağı' },
   { name: 'Anadolu Mutfağı' },
+  { name: 'Kora' },
+  { name: 'ERA Gurme' },
 ];
 
 function LogoItem({ name }: { name: string }) {
