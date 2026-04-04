@@ -1,6 +1,16 @@
 import { useEffect } from 'react';
-import { Navigation } from '@/components/Navigation';
+import { NavigationB } from '@/components/b/NavigationB';
+import { HeroB } from '@/components/b/HeroB';
+import { LogoBelt } from '@/components/LogoBelt';
+import { PainPointsB } from '@/components/b/PainPointsB';
+import { CalculatorB } from '@/components/b/CalculatorB';
+import { FeaturesB } from '@/components/b/FeaturesB';
+import { HowItWorksB } from '@/components/b/HowItWorksB';
+import { PricingB } from '@/components/b/PricingB';
+import { FAQB } from '@/components/b/FAQB';
+import { CTAB } from '@/components/b/CTAB';
 import Footer from '@/components/Footer';
+import { ScrollProgress } from '@/components/ui/scroll-progress';
 import { trackExperiment } from '@/lib/experiment';
 
 const IndexB = () => {
@@ -10,16 +20,18 @@ const IndexB = () => {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
-      <main className="flex items-center justify-center min-h-[60vh] px-4">
-        <div className="text-center space-y-4 max-w-lg">
-          <h1 className="text-3xl font-bold text-gray-900">
-            Variant B
-          </h1>
-          <p className="text-gray-500">
-            Replace this placeholder with the new landing page design.
-          </p>
-        </div>
+      <ScrollProgress />
+      <NavigationB />
+      <main>
+        <HeroB />
+        <LogoBelt />
+        <PainPointsB />
+        <CalculatorB />
+        <FeaturesB />
+        <HowItWorksB />
+        <PricingB />
+        <FAQB />
+        <CTAB />
       </main>
       <Footer />
     </div>

@@ -17,6 +17,9 @@ export const EVENTS = {
   CTA_CLICKED: 'cta_clicked',
   BLOG_POST_VIEWED: 'blog_post_viewed',
   FAQ_EXPANDED: 'faq_expanded',
+  CALCULATOR_STARTED: 'calculator_started',
+  CALCULATOR_EMAIL_SUBMITTED: 'calculator_email_submitted',
+  SIGNUP_CTA_CLICKED: 'signup_cta_clicked',
 } as const;
 
 // Type-safe capture function
@@ -64,4 +67,20 @@ export function trackBlogPostViewed(data: {
 
 export function trackFaqExpanded(question: string) {
   capture(EVENTS.FAQ_EXPANDED, { question });
+}
+
+export function trackCalculatorStarted(variant: 'a' | 'b') {
+  capture(EVENTS.CALCULATOR_STARTED, { variant });
+}
+
+export function trackCalculatorEmailSubmitted(data: {
+  email: string;
+  variant: 'a' | 'b';
+  [key: string]: unknown;
+}) {
+  capture(EVENTS.CALCULATOR_EMAIL_SUBMITTED, data);
+}
+
+export function trackSignupCtaClicked(location: string, variant: 'a' | 'b') {
+  capture(EVENTS.SIGNUP_CTA_CLICKED, { location, variant });
 }

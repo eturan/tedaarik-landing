@@ -1,11 +1,12 @@
 import { ArrowRight, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { buildSignupUrl } from '@/lib/utm';
+import { useBLanguage } from '@/hooks/useBLanguage';
+import { trackStartTrial } from '@/lib/meta-pixel';
 import { trackSignupCtaClicked } from '@/lib/posthog';
+import { buildSignupUrl } from '@/lib/utm';
 
-export function CTA() {
-  const { t, language } = useLanguage();
+export function CTAB() {
+  const { t, language } = useBLanguage();
 
   const scrollToCalculator = () => {
     const calculatorSection = document.getElementById('calculator');
@@ -23,7 +24,7 @@ export function CTA() {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.h2
-          className="text-4xl lg:text-5xl font-bold text-[#3B3B3B] mb-6"
+          className="text-4xl lg:text-5xl font-bold text-[#3B3B3B] mb-6 whitespace-pre-line"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -50,7 +51,7 @@ export function CTA() {
         >
           <motion.a
             href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-            onClick={() => trackSignupCtaClicked('cta-bottom', 'a')}
+            onClick={() => { trackStartTrial(); trackSignupCtaClicked('cta-bottom', 'b'); }}
             className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all font-bold text-lg shadow-lg flex items-center justify-center gap-2 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -60,7 +61,7 @@ export function CTA() {
           </motion.a>
           <motion.button
             onClick={scrollToCalculator}
-            className="border-2 border-gray-200 text-[#3B3B3B] bg-white px-8 py-4 rounded-xl hover:border-[#158F86] hover:text-[#158F86] transition-colors font-semibold text-lg"
+            className="bg-rose-500 text-white px-8 py-4 rounded-xl hover:bg-rose-600 transition-all font-semibold text-lg shadow-lg hover:shadow-rose-500/25"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -92,5 +93,3 @@ export function CTA() {
     </section>
   );
 }
-
-export default CTA;

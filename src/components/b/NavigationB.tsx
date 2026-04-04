@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useBLanguage } from '@/hooks/useBLanguage';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import logoIcon from '@/assets/tedaarik-icon.png';
-import { buildSignupUrl } from '@/lib/utm';
+import { trackStartTrial } from '@/lib/meta-pixel';
 import { trackSignupCtaClicked } from '@/lib/posthog';
+import { buildSignupUrl } from '@/lib/utm';
 
-export function Navigation() {
-  const { t, language, setLanguage } = useLanguage();
+export function NavigationB() {
+  const { t, language, setLanguage } = useBLanguage();
   const location = useLocation();
   const isHome = location.pathname === '/';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -54,8 +55,7 @@ export function Navigation() {
             </motion.div>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -78,19 +78,19 @@ export function Navigation() {
                 onClick={() => setLanguage('en')}
                 className={`px-2 py-1 text-sm font-semibold rounded-md transition-all ${language === 'en' ? 'bg-white shadow-sm text-[#158F86]' : 'text-gray-500 hover:text-gray-700'}`}
               >
-                🇬🇧 EN
+                EN
               </button>
               <button
                 onClick={() => setLanguage('tr')}
                 className={`px-2 py-1 text-sm font-semibold rounded-md transition-all ${language === 'tr' ? 'bg-white shadow-sm text-[#158F86]' : 'text-gray-500 hover:text-gray-700'}`}
               >
-                🇹🇷 TR
+                TR
               </button>
             </div>
 
             <motion.a
               href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-              onClick={() => trackSignupCtaClicked('nav', 'a')}
+              onClick={() => { trackStartTrial(); trackSignupCtaClicked('nav', 'b'); }}
               className="bg-[#158F86] text-white px-6 py-2.5 rounded-full hover:bg-[#117A71] transition-colors font-semibold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -99,9 +99,8 @@ export function Navigation() {
             </motion.a>
           </div>
 
-          {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 text-[#3B3B3B]"
+            className="lg:hidden p-2 text-[#3B3B3B]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -109,14 +108,13 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-3">
               {navLinks.map((link) => (
@@ -156,7 +154,7 @@ export function Navigation() {
 
               <a
                 href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-                onClick={() => trackSignupCtaClicked('nav-mobile', 'a')}
+                onClick={() => { trackStartTrial(); trackSignupCtaClicked('nav-mobile', 'b'); }}
                 className="block bg-[#158F86] text-white px-5 py-2.5 rounded-full text-center font-semibold"
               >
                 {t.nav.startTrial}
@@ -168,5 +166,3 @@ export function Navigation() {
     </motion.nav>
   );
 }
-
-export default Navigation;

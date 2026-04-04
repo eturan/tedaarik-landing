@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { Check, ArrowRight } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { buildSignupUrl } from '@/lib/utm';
+import { useBLanguage } from '@/hooks/useBLanguage';
+import { trackStartTrial } from '@/lib/meta-pixel';
 import { trackSignupCtaClicked } from '@/lib/posthog';
+import { buildSignupUrl } from '@/lib/utm';
 
-export function Pricing() {
-  const { t, language } = useLanguage();
+export function PricingB() {
+  const { t, language } = useBLanguage();
   const price = language === 'tr' ? '₺1.400' : '$30';
   const originalPrice = language === 'tr' ? '₺2.800' : '$60';
 
@@ -74,7 +75,7 @@ export function Pricing() {
 
             <motion.a
               href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-              onClick={() => trackSignupCtaClicked('pricing', 'a')}
+              onClick={() => { trackStartTrial(); trackSignupCtaClicked('pricing', 'b'); }}
               className="w-full bg-[#158F86] text-white py-4 px-6 rounded-xl font-bold hover:bg-[#117A71] hover:ring-4 hover:ring-[#158F86]/30 transition-all shadow-lg hover:shadow-[#158F86]/40 flex items-center justify-center gap-2 group"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -82,7 +83,7 @@ export function Pricing() {
               {t.pricing.startTrial}
               <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-white transition-colors" />
             </motion.a>
-            <p className="text-xs text-center text-[#3B3B3B]/40 mt-4">
+            <p className="text-sm text-center text-[#3B3B3B]/60 font-medium mt-4">
               {t.pricing.note}
             </p>
           </motion.div>
@@ -91,5 +92,3 @@ export function Pricing() {
     </section>
   );
 }
-
-export default Pricing;
