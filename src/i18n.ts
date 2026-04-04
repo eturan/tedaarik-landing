@@ -86,25 +86,25 @@ export const translations = {
       },
     },
     features: {
-      title: 'Everything You Need to Run Smarter',
-      subtitle: 'Three simple tools that work together to save you time, reduce errors, and protect your margins.',
+      title: 'How Tedaarik Plugs the Leak',
+      subtitle: 'Three tools that work together to find where your money goes and plug the leak.',
       f1: {
         title: 'Invoice Digitization & Cost Tracking',
-        desc: 'Upload your invoices. We handle the rest.',
+        desc: 'Every invoice you upload becomes a data point against overpaying.',
         li1: 'Upload via camera, email or e-invoice integration',
         li2: 'Extracts every line item and price automatically',
         li3: 'Searchable digital archive for easy accounting'
       },
       f2: {
         title: 'Automatic Recipe Costing',
-        desc: 'See exactly what every dish costs you to make.',
+        desc: 'Know the true cost of every dish — and catch it the moment your margins start shrinking.',
         li1: 'Recipe costs update automatically when ingredient prices change',
         li2: 'Spot shrinking margins instantly',
         li3: 'See which ingredients are eating your profits'
       },
       f3: {
         title: 'Market Price Comparison',
-        desc: 'Compare your prices with the local market average.',
+        desc: "Find out if you're paying more than you should — and prove it with data.",
         li1: "See if you're overpaying for key ingredients",
         li2: 'Find better deals from verified suppliers',
         li3: 'Negotiate with confidence using real data'
@@ -136,10 +136,10 @@ export const translations = {
     },
     pricing: {
       title: 'Simple, Transparent Pricing',
-      subtitle: 'Start free. Upgrade when you see the value.',
+      subtitle: 'It costs less than a single unnoticed supplier overcharge.',
       limitedOffer: 'Limited Time Offer',
       perMonth: 'per month',
-      saveOffer: 'Become one of the first 100 users & save 50% forever',
+      saveOffer: 'First 100 users lock in 50% off — less than one missed price hike per month.',
       features: [
         'Unlimited invoice uploads',
         'Market price trends',
@@ -160,8 +160,8 @@ export const translations = {
       q4: { q: 'Is my data secure?', a: 'Absolutely. We use bank-level encryption to protect your financial data and never share your information with anyone.' }
     },
     cta: {
-      title: 'Ready to Manage Your Costs?',
-      subtitle: "Start your free trial and see what's actually happening in your restaurant.",
+      title: "Your Leaks Won't Wait. Why Should You?",
+      subtitle: "Start your free trial today and see exactly where your cash is going — before another month slips by.",
       startTrial: 'Start Your Free 14-Day Trial',
       estimate: 'Estimate Potential Savings',
       noCreditCard: 'No credit card required',
@@ -275,25 +275,25 @@ export const translations = {
       },
     },
     features: {
-      title: 'Daha Akıllı Bir İşletme İçin İhtiyacınız Olan Her Şey',
-      subtitle: 'Size zaman kazandırmak, hataları azaltmak ve marjlarınızı korumak için birlikte çalışan üç basit araç.',
+      title: 'Tedaarik Sızıntıyı Nasıl Kapatıyor?',
+      subtitle: 'Paranızın nereye gittiğini bulan ve kaybı durduran üç araç.',
       f1: {
         title: 'Fatura Dijitalleştirme ve Maliyet Takibi',
-        desc: 'Faturalarınızı yükleyin. Gerisini biz hallederiz.',
+        desc: 'Yüklediğiniz her fatura, fazla ödemeye karşı bir veri noktasına dönüşür.',
         li1: 'Fotoğraf, e-posta veya e-fatura entegrasyonu ile yükleyin',
         li2: 'Her ürünün birim fiyatı otomatik olarak çıkarılsın',
         li3: 'Aranabilir dijital arşiv ile ön muhasebenizi kolaylaştırın'
       },
       f2: {
         title: 'Otomatik Reçete Maliyeti Hesaplama',
-        desc: 'Her bir tabağın size maliyetinin ne olduğunu tam olarak görün.',
+        desc: 'Her tabağın gerçek maliyetini bilin — marjlarınız daralmaya başladığı anda yakalayın.',
         li1: 'Malzeme fiyatları değiştiğinde reçete maliyetleri otomatik olarak güncellensin',
         li2: 'Daralan marjları anında tespit edip kolayca karar verin',
         li3: 'Hangi malzemelerin & tabakların karlarınızı yediğini görün'
       },
       f3: {
         title: 'Piyasa Fiyat Karşılaştırması',
-        desc: 'Fiyatlarınızı yerel piyasa ortalamasıyla karşılaştırın.',
+        desc: 'Olması gerekenden fazla mı ödüyorsunuz? Verilerle kanıtlayın.',
         li1: "Satın aldığınız ürünler için fazla ödeme yapıp yapmadığınızı görün",
         li2: 'Doğrulanmış tedarikçilerden daha iyi ürünler ve fiyatlar bulun',
         li3: 'Gerçek verileri kullanarak güvenle pazarlık yapın'
@@ -325,10 +325,10 @@ export const translations = {
     },
     pricing: {
       title: 'Basit, Şeffaf Fiyatlandırma',
-      subtitle: 'Ücretsiz başlayın. Değerini gördüğünüzde yükseltin.',
+      subtitle: 'Tek bir fark edilmeyen tedarikçi fiyat artışından daha ucuza.',
       limitedOffer: 'Sınırlı Süreli Teklif',
       perMonth: '/ay',
-      saveOffer: 'İlk 100 kullanıcıdan biri olun ve her pakette sonsuza dek %50 tasarruf edin',
+      saveOffer: 'İlk 100 kullanıcıya kalıcı %50 indirim — aylık tek bir kaçan fiyat farkından bile ucuz.',
       features: [
         'Sınırsız fatura yükleme',
         'Piyasa fiyat trendleri',
@@ -349,8 +349,8 @@ export const translations = {
       q4: { q: 'Verilerim güvende mi?', a: 'Kesinlikle. Finansal verilerinizi korumak için banka düzeyinde şifreleme ve anonimleştirme yapıyoruz. Hiçbir verinizi asla kimseyle paylaşmıyoruz.' }
     },
     cta: {
-      title: 'Maliyetlerinizi Yönetmeye Hazır mısınız?',
-      subtitle: "Ücretsiz denemenizi başlatın ve restoranınızda gerçekten neler olup bittiğini görün.",
+      title: 'Sızıntılarınız Beklemiyor. Siz Neden Bekleyesiniz?',
+      subtitle: "Ücretsiz denemenizi bugün başlatın ve paranızın nereye gittiğini görün — bir ay daha kaybetmeden.",
       startTrial: '14 Günlük Ücretsiz Denemenizi Başlatın',
       estimate: 'Potansiyel Tasarrufu Hesapla',
       noCreditCard: 'Kredi kartı gerekmez',
