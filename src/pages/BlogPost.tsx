@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
@@ -7,14 +7,15 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { BlogHeader } from "@/components/blog/BlogHeader";
 import { MarkdownRenderer } from "@/components/blog/MarkdownRenderer";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
-import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { getPostBySlug } from "@/lib/blog";
 import { trackBlogPostViewed } from "@/lib/posthog";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { trackStartTrial } from "@/lib/meta-pixel";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPostBySlug(slug) : undefined;
-  const [isEarlyAccessOpen, setIsEarlyAccessOpen] = useState(false);
+  const { language } = useLanguage();
 
   // Track blog post view and set document title
   useEffect(() => {
@@ -66,12 +67,13 @@ const BlogPost = () => {
               Faturalarınızı yükleyin, tariflerinizi tanımlayın, maliyetleriniz
               otomatik hesaplansın.
             </p>
-            <button
-              onClick={() => setIsEarlyAccessOpen(true)}
-              className="glow-button bg-accent px-6 py-2.5 rounded-full font-semibold text-white text-sm"
+            <a
+              href={`https://app.tedaarik.com/signup?lang=${language}`}
+              onClick={() => trackStartTrial()}
+              className="inline-block bg-[#158F86] px-6 py-2.5 rounded-full font-semibold text-white text-sm hover:bg-[#117A71] transition-colors"
             >
-              Erken Erişim Talep Et
-            </button>
+              Ücretsiz Dene
+            </a>
           </motion.div>
 
           <RelatedPosts
@@ -82,12 +84,6 @@ const BlogPost = () => {
       </main>
 
       <Footer />
-
-      <EarlyAccessForm
-        open={isEarlyAccessOpen}
-        onOpenChange={setIsEarlyAccessOpen}
-        source="blog_post"
-      />
     </div>
   );
 };

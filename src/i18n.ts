@@ -24,7 +24,6 @@ export const translations = {
       noCreditCard: 'No credit card required',
       setupFast: 'Setup in 5 minutes',
       imageAlt: 'Tedaarik dashboard highlighting profit leak detection, supplier price gaps, and cost analysis for restaurants',
-      imageBadge: '13% price gap detected',
     },
     painPoints: {
       title: 'Running a Restaurant Is Hard Enough',
@@ -127,13 +126,6 @@ export const translations = {
       },
       footer: "That's it. No manual entry, no consultants, no spreadsheets.",
     },
-    testimonials: {
-      title: 'Trusted by Kitchens Everywhere',
-      subtitle: 'See what restaurant professionals are saying about Tedaarik.',
-      t1: { quote: "Tedaarik completely changed how we handle our invoices. I used to spend nights to digitize them. Now it is done automatically.", role: "Owner, Coldfusion" },
-      t2: { quote: "The price comparison tool alone saved us $400 in the first month on produce. It's like having a dedicated procurement manager.", role: "Manager, Müjü House" },
-      t3: { quote: "Finally, software that doesn't feel like it was built in the 90s. Clean, fast, and actually solves the kitchen chaos.", role: "Owner, DAGS Coffee" }
-    },
     pricing: {
       title: 'Simple, Transparent Pricing',
       subtitle: 'It costs less than a single unnoticed supplier overcharge.',
@@ -213,7 +205,6 @@ export const translations = {
       noCreditCard: 'Kredi kartı gerekmez',
       setupFast: '5 dakikada kurulum',
       imageAlt: 'Tedarikçi fiyat farkı ve kâr sızıntısı analizini gösteren Tedaarik paneli',
-      imageBadge: '%13 Fiyat Farkı Tespit Edildi',
     },
     painPoints: {
       title: 'Restoran İşletmek Zaten Yeterince Zor',
@@ -315,13 +306,6 @@ export const translations = {
         desc: 'Gerçek verilerle pazarlık yapın, menü fiyatlarınızı güncelleyin veya tedarikçi değiştirin — her karar tahmine değil, rakamlara dayansın.',
       },
       footer: 'Hepsi bu. Manuel veri girişi yok, danışman yok, Excel yok.',
-    },
-    testimonials: {
-      title: 'Tedaarik Hakkındaki Yorumlar',
-      subtitle: 'Restoran profesyonellerinin Tedaarik hakkında ne söylediğini görün.',
-      t1: { quote: "Tedaarik faturalarımızı işleme şeklimizi tamamen değiştirdi. Fatura dijitalleştirmek için geceler harcardım. Şimdi otomatik yapılıyor.", role: "İşletme Sahibi, Coldfusion" },
-      t2: { quote: "Sadece fiyat karşılaştırma aracı ilk ayda ürünlerde bize ₺10.000 kazandırdı. Profesyonel bir satın almacıyla çalışmak gibi.", role: "Yönetici, Müjü House" },
-      t3: { quote: "Sonunda, 90'larda yapılmış gibi hissettirmeyen bir yazılım. Temiz, hızlı ve restoran kaosunu gerçekten çözüyor.", role: " İşletme Sahibi, DAGS Coffee" }
     },
     pricing: {
       title: 'Basit, Şeffaf Fiyatlandırma',
