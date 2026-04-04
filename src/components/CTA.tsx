@@ -22,7 +22,7 @@ export function CTA() {
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <motion.h2
-          className="text-4xl lg:text-5xl font-bold text-[#3B3B3B] mb-6"
+          className="text-4xl lg:text-5xl font-bold text-[#3B3B3B] mb-6 whitespace-pre-line"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -59,7 +59,7 @@ export function CTA() {
           </motion.a>
           <motion.button
             onClick={scrollToCalculator}
-            className="border-2 border-gray-200 text-[#3B3B3B] bg-white px-8 py-4 rounded-xl hover:border-[#158F86] hover:text-[#158F86] transition-colors font-semibold text-lg"
+            className="bg-rose-500 text-white px-8 py-4 rounded-xl hover:bg-rose-600 transition-all font-semibold text-lg shadow-lg hover:shadow-rose-500/25"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

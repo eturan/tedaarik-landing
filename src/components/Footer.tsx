@@ -22,7 +22,6 @@ const Footer = () => {
       links: [
         { label: t.footer.aboutUs, href: "/hakkimizda", isInternal: true },
         { label: t.footer.blog, href: "/blog", isInternal: true },
-        { label: t.footer.contact, href: "mailto:info@tedaarik.com" },
       ],
     },
     legal: {

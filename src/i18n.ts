@@ -58,7 +58,7 @@ export const translations = {
       },
       step2: {
         title: 'What Is Your Monthly Revenue?',
-        desc: 'An estimate is fine.',
+        desc: 'An approximate figure works. This is only used to generate your analysis — we don\'t store it.',
         rangeMin: '$10k',
         rangeMax: '$250k+',
         back: 'Back',
@@ -160,10 +160,10 @@ export const translations = {
       q4: { q: 'Is my data secure?', a: 'Absolutely. We use bank-level encryption to protect your financial data and never share your information with anyone.' }
     },
     cta: {
-      title: "Your Leaks Won't Wait. Why Should You?",
+      title: "Your Money Leaks Won't Wait.\nWhy Should You?",
       subtitle: "Start your free trial today and see exactly where your cash is going — before another month slips by.",
       startTrial: 'Start Your Free 14-Day Trial',
-      estimate: 'Estimate Potential Savings',
+      estimate: 'Detect My Profit Leak',
       noCreditCard: 'No credit card required',
       setupFast: 'Setup in 5 minutes',
       cancel: 'Cancel anytime'
@@ -247,7 +247,7 @@ export const translations = {
       },
       step2: {
         title: 'Aylık Yaklaşık Cironuz Nedir?',
-        desc: 'Tahmini bir değer yeterlidir.',
+        desc: 'Yaklaşık bir değer yeterlidir. Bu bilgi yalnızca analizinizi oluşturmak için kullanılır — kaydedilmez.',
         rangeMin: '₺100.000',
         rangeMax: '₺5.000.000+',
         back: 'Geri',
@@ -349,10 +349,10 @@ export const translations = {
       q4: { q: 'Verilerim güvende mi?', a: 'Kesinlikle. Finansal verilerinizi korumak için banka düzeyinde şifreleme ve anonimleştirme yapıyoruz. Hiçbir verinizi asla kimseyle paylaşmıyoruz.' }
     },
     cta: {
-      title: 'Sızıntılarınız Beklemiyor. Siz Neden Bekleyesiniz?',
+      title: 'Kâr Sızıntılarınız Beklemiyor.\nSiz Neden Bekleyesiniz?',
       subtitle: "Ücretsiz denemenizi bugün başlatın ve paranızın nereye gittiğini görün — bir ay daha kaybetmeden.",
-      startTrial: '14 Günlük Ücretsiz Denemenizi Başlatın',
-      estimate: 'Potansiyel Tasarrufu Hesapla',
+      startTrial: '14 Günlük Ücretsiz Denememi Başlat',
+      estimate: 'Kâr Sızıntısını Tespit Et',
       noCreditCard: 'Kredi kartı gerekmez',
       setupFast: '5 dakikada kurulum',
       cancel: 'İstediğiniz zaman iptal edin'

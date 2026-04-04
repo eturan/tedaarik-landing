@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { getAllPosts } from "@/lib/blog";
-import { EarlyAccessForm } from "@/components/EarlyAccessForm";
+
 import {
   AnimatedSection,
   StaggerContainer,
@@ -14,7 +14,6 @@ import {
 
 const Blog = () => {
   const posts = getAllPosts();
-  const [isEarlyAccessOpen, setIsEarlyAccessOpen] = useState(false);
 
   useEffect(() => {
     document.title = "Restoran Yönetimi Rehberleri | Tedaarik Blog";
@@ -80,12 +79,12 @@ const Blog = () => {
                 TEDAARIK ile restoran maliyetlerinizi otomatik takip edin,
                 karlılığınızı artırın.
               </p>
-              <button
-                onClick={() => setIsEarlyAccessOpen(true)}
-                className="glow-button bg-accent px-8 py-3 rounded-full font-semibold text-white"
+              <a
+                href="https://app.tedaarik.com/signup?lang=tr"
+                className="glow-button bg-accent px-8 py-3 rounded-full font-semibold text-white inline-block"
               >
-                Erken Erişim Talep Et
-              </button>
+                Ücretsiz Dene
+              </a>
             </div>
           </AnimatedSection>
         </section>
@@ -93,11 +92,7 @@ const Blog = () => {
 
       <Footer />
 
-      <EarlyAccessForm
-        open={isEarlyAccessOpen}
-        onOpenChange={setIsEarlyAccessOpen}
-        source="blog_list"
-      />
+
     </div>
   );
 };
