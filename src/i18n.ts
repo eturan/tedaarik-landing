@@ -45,7 +45,9 @@ export const translations = {
         subtitle: 'Ingredient costs go up, but your menu prices stay the same.',
         li1: 'Updating recipe cards takes forever',
         li2: 'Unsure which dishes are actually profitable'
-      }
+      },
+      bridge: 'How much are these problems costing your restaurant every month?',
+      bridgeCta: 'Find out in 30 seconds',
     },
     calculator: {
       currency: '$',
@@ -107,7 +109,8 @@ export const translations = {
         li1: "See if you're overpaying for key ingredients",
         li2: 'Find better deals from verified suppliers',
         li3: 'Negotiate with confidence using real data'
-      }
+      },
+      cta: 'See Your Savings',
     },
     howItWorks: {
       title: 'How Does It Work?',
@@ -125,6 +128,7 @@ export const translations = {
         desc: "Negotiate with real data, adjust your menu prices, or switch suppliers — every decision backed by numbers, not guesswork.",
       },
       footer: "That's it. No manual entry, no consultants, no spreadsheets.",
+      cta: 'Start Your Free Trial',
     },
     pricing: {
       title: 'Simple, Transparent Pricing',
@@ -226,7 +230,9 @@ export const translations = {
         subtitle: 'Malzeme maliyetleri artar, ancak menü fiyatlarınız bazen aylarca aynı kalır.',
         li1: 'Reçete maliyetlerini güncellemek saatler hatta günler alır',
         li2: 'Hangi tabakların karlı olduğunu net göremezsiniz'
-      }
+      },
+      bridge: 'Bu sorunlar restoranınıza her ay ne kadara mal oluyor?',
+      bridgeCta: '30 saniyede öğrenin',
     },
     calculator: {
       currency: '₺',
@@ -288,7 +294,8 @@ export const translations = {
         li1: "Satın aldığınız ürünler için fazla ödeme yapıp yapmadığınızı görün",
         li2: 'Doğrulanmış tedarikçilerden daha iyi ürünler ve fiyatlar bulun',
         li3: 'Gerçek verileri kullanarak güvenle pazarlık yapın'
-      }
+      },
+      cta: 'Tasarrufunuzu Görün',
     },
     howItWorks: {
       title: 'Nasıl Çalışır?',
@@ -306,6 +313,7 @@ export const translations = {
         desc: 'Gerçek verilerle pazarlık yapın, menü fiyatlarınızı güncelleyin veya tedarikçi değiştirin — her karar tahmine değil, rakamlara dayansın.',
       },
       footer: 'Hepsi bu. Manuel veri girişi yok, danışman yok, Excel yok.',
+      cta: 'Ücretsiz Denemenizi Başlatın',
     },
     pricing: {
       title: 'Basit, Şeffaf Fiyatlandırma',

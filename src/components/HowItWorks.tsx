@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import { Upload, ScanSearch, ShieldCheck } from 'lucide-react';
+import { Upload, ScanSearch, ShieldCheck, ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { trackStartTrial } from '@/lib/meta-pixel';
 
 export function HowItWorks() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const mainSteps = [
     { icon: Upload, title: t.howItWorks.step1.title, desc: t.howItWorks.step1.desc, step: 1 },
@@ -85,6 +86,25 @@ export function HowItWorks() {
         >
           {t.howItWorks.footer}
         </motion.p>
+
+        <motion.div
+          className="text-center mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <motion.a
+            href={`https://app.tedaarik.com/signup?lang=${language}`}
+            onClick={() => trackStartTrial()}
+            className="inline-flex items-center gap-2 bg-[#158F86] text-white px-6 py-3 rounded-xl hover:bg-[#117A71] transition-all shadow-lg hover:shadow-[#158F86]/20 font-semibold group"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            {t.howItWorks.cta}
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

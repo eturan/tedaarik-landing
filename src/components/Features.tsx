@@ -143,6 +143,26 @@ export function Features() {
             );
           })}
         </div>
+
+        <motion.div
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.button
+            onClick={() => {
+              document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="inline-flex items-center gap-2 bg-rose-500 text-white px-6 py-3 rounded-xl hover:bg-rose-600 transition-all shadow-lg hover:shadow-rose-500/25 font-semibold"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Calculator className="h-5 w-5" />
+            {t.features.cta}
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

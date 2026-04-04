@@ -1,4 +1,4 @@
-import { Clock, Shuffle, Calculator } from 'lucide-react';
+import { Clock, Shuffle, Calculator, ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -85,6 +85,29 @@ export function PainPoints() {
             );
           })}
         </div>
+
+        <motion.div
+          className="text-center mt-14"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <p className="text-xl font-semibold text-[#3B3B3B] mb-4">
+            {t.painPoints.bridge}
+          </p>
+          <motion.button
+            onClick={() => {
+              document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="inline-flex items-center gap-2 bg-rose-500 text-white px-6 py-3 rounded-xl hover:bg-rose-600 transition-all shadow-lg hover:shadow-rose-500/25 font-semibold"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            {t.painPoints.bridgeCta}
+            <ArrowDown className="h-4 w-4" />
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );
