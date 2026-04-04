@@ -53,6 +53,7 @@ export const translations = {
       currency: '$',
       title: 'Profit Leak Audit',
       subtitle: 'Find out how much money your restaurant is losing every month.',
+      socialProof: '47 restaurants have run this audit so far.',
       step1: {
         title: 'What Is Your Establishment Type?',
         desc: 'This lets us tailor results to your industry benchmarks.',
@@ -145,7 +146,7 @@ export const translations = {
         'Up to 5 users'
       ],
       startTrial: 'Start Free Trial',
-      note: '14-day free trial • No credit card required'
+      note: '14-day free trial • No credit card required • Cancel anytime'
     },
     faq: {
       title: 'Frequently Asked Questions',
@@ -153,7 +154,10 @@ export const translations = {
       q1: { q: 'Do I need to change my suppliers?', a: 'Not at all. Tedaarik works with your existing suppliers. You just upload the invoices you already receive, and we handle the data extraction and analysis.' },
       q2: { q: 'Can I connect it to my e-invoice system?', a: 'Yes! We integrate with most major e-invoice systems to pull invoice data automatically, giving you real-time cost analysis.' },
       q3: { q: 'How long does setup take?', a: "Most restaurants are up and running in under 5 minutes. Just create an account, upload a few recent invoices, and you'll start seeing data immediately." },
-      q4: { q: 'Is my data secure?', a: 'Absolutely. We use bank-level encryption to protect your financial data and never share your information with anyone.' }
+      q4: { q: 'Is my data secure?', a: 'Absolutely. We use bank-level encryption to protect your financial data and never share your information with anyone.' },
+      q5: { q: 'How much does it cost?', a: 'Tedaarik costs $30/month (50% early-bird discount for our first 100 users — normally $60/month). You can try it free for 14 days with no credit card required.' },
+      q6: { q: 'What happens after the free trial?', a: 'If you subscribe, your account continues seamlessly with all your data intact. If you choose not to, your account is simply paused — no surprise charges, no data deleted.' },
+      q7: { q: 'What if I need more than 5 users?', a: 'Get in touch with us at info@tedaarik.com and we\'ll set up a custom plan for your team size.' }
     },
     cta: {
       title: "Your Money Leaks Won't Wait.\nWhy Should You?",
@@ -238,6 +242,7 @@ export const translations = {
       currency: '₺',
       title: 'Kâr Sızıntısı Denetimi',
       subtitle: 'Restoranınız her ay ne kadar para kaybediyor, öğrenin.',
+      socialProof: 'Şu ana kadar 47 restoran bu denetimi çalıştırdı.',
       step1: {
         title: 'İşletme Tipiniz Nedir?',
         desc: 'Sonuçlarınızı sektör verilerine göre kişiselleştirmemizi sağlar.',
@@ -330,7 +335,7 @@ export const translations = {
         '5 kullanıcıya kadar ekip büyüklüğü'
       ],
       startTrial: 'Ücretsiz Dene',
-      note: '14 günlük ücretsiz deneme • Kredi kartı gerekmez'
+      note: '14 günlük ücretsiz deneme • Kredi kartı gerekmez • İstediğiniz zaman iptal edin'
     },
     faq: {
       title: 'Sıkça Sorulan Sorular',
@@ -338,7 +343,10 @@ export const translations = {
       q1: { q: 'Tedarikçilerimi değiştirmem gerekiyor mu?', a: 'Hayır. Tedaarik, mevcut tedarikçilerinizle de çalışır. Sadece halihazırda aldığınız faturaları yüklersiniz, veri çıkarma ve analizi biz hallederiz.' },
       q2: { q: 'E-fatura sistemime bağlayabilir miyim?', a: 'Evet! Çoğu büyük e-fatura sistemiyle entegre olarak fatura verilerini otomatik çekerek bu iş yükünü omuzlarınızdan alıyor ve size gerçek zamanlı maliyet analizi sağlıyoruz.' },
       q3: { q: 'Kurulum ne kadar sürer?', a: "Çoğu restoran 5 dakikadan kısa sürede çalışmaya başlıyor. Sadece bir hesap oluşturun, birkaç yeni fatura yükleyin ve verileri hemen görmeye başlayacaksınız." },
-      q4: { q: 'Verilerim güvende mi?', a: 'Kesinlikle. Finansal verilerinizi korumak için banka düzeyinde şifreleme ve anonimleştirme yapıyoruz. Hiçbir verinizi asla kimseyle paylaşmıyoruz.' }
+      q4: { q: 'Verilerim güvende mi?', a: 'Kesinlikle. Finansal verilerinizi korumak için banka düzeyinde şifreleme ve anonimleştirme yapıyoruz. Hiçbir verinizi asla kimseyle paylaşmıyoruz.' },
+      q5: { q: 'Ne kadar?', a: 'Tedaarik aylık ₺1.400+KDV (ilk 100 kullanıcıya özel %50 indirim — normal fiyat ₺2.800/ay). 14 gün boyunca kredi kartı gerekmeden ücretsiz deneyebilirsiniz.' },
+      q6: { q: 'Ücretsiz deneme sonrası ne olur?', a: 'Abone olursanız, tüm verileriniz korunarak hesabınız kesintisiz devam eder. Abone olmazsanız hesabınız duraklatılır — sürpriz ücret yok, verileriniz silinmez.' },
+      q7: { q: '5\'ten fazla kullanıcıya ihtiyacım olursa?', a: 'info@tedaarik.com adresinden bizimle iletişime geçin, ekip büyüklüğünüze uygun özel bir plan oluşturalım.' }
     },
     cta: {
       title: 'Kâr Sızıntılarınız Beklemiyor.\nSiz Neden Bekleyesiniz?',

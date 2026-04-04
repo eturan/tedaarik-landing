@@ -115,6 +115,9 @@ export function Calculator() {
           <p className="text-lg text-[#3B3B3B]/80 max-w-2xl mx-auto">
             {t.calculator.subtitle}
           </p>
+          <p className="text-sm text-[#158F86] font-medium mt-3">
+            {t.calculator.socialProof}
+          </p>
         </div>
 
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden relative min-h-[500px] flex flex-col">

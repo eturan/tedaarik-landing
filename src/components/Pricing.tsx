@@ -81,7 +81,7 @@ export function Pricing() {
               {t.pricing.startTrial}
               <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-white transition-colors" />
             </motion.a>
-            <p className="text-xs text-center text-[#3B3B3B]/40 mt-4">
+            <p className="text-sm text-center text-[#3B3B3B]/60 font-medium mt-4">
               {t.pricing.note}
             </p>
           </motion.div>

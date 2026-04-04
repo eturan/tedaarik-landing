@@ -13,6 +13,9 @@ export function FAQ() {
     { question: t.faq.q2.q, answer: t.faq.q2.a },
     { question: t.faq.q3.q, answer: t.faq.q3.a },
     { question: t.faq.q4.q, answer: t.faq.q4.a },
+    { question: t.faq.q5.q, answer: t.faq.q5.a },
+    { question: t.faq.q6.q, answer: t.faq.q6.a },
+    { question: t.faq.q7.q, answer: t.faq.q7.a },
   ];
 
   const toggleFAQ = (index: number) => {
