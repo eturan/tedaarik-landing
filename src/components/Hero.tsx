@@ -6,6 +6,7 @@ import heroImageEn from '@/assets/hero-dashboard.png';
 import heroImageTr from '@/assets/hero-dashboard-tr.png';
 import { buildSignupUrl } from '@/lib/utm';
 import { trackSignupCtaClicked } from '@/lib/posthog';
+import { trackStartTrial } from '@/lib/meta-pixel';
 
 export function Hero() {
   const { t, language } = useLanguage();
@@ -67,7 +68,7 @@ export function Hero() {
             >
               <motion.a
                 href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-                onClick={() => trackSignupCtaClicked('hero', 'a')}
+                onClick={() => { trackSignupCtaClicked('hero', 'a'); trackStartTrial(); }}
                 className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all shadow-lg hover:shadow-[#158F86]/20 flex items-center justify-center gap-2 group font-semibold text-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

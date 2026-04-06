@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ChevronLeft, Sandwich, Coffee, Flame, Utensils, Store, Croissant } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useBLanguage } from '@/hooks/useBLanguage';
-import { trackStartTrial } from '@/lib/meta-pixel';
+import { trackStartTrial, trackCalculatorStartedPixel, trackLead } from '@/lib/meta-pixel';
 import { trackCalculatorStarted, trackCalculatorEmailSubmitted, trackSignupCtaClicked } from '@/lib/posthog';
 import { buildSignupUrl } from '@/lib/utm';
 
@@ -71,6 +71,7 @@ export function CalculatorB() {
   const handleCuisineSelect = (cuisine: CuisineType) => {
     setSelectedCuisine(cuisine);
     trackCalculatorStarted('b');
+    trackCalculatorStartedPixel();
     if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current);
     advanceTimerRef.current = setTimeout(() => setStep(2), 300);
   };
@@ -103,6 +104,7 @@ export function CalculatorB() {
         monthly_leak: totalMonthlyLeak,
         yearly_leak: yearlyLeak,
       });
+      trackLead({ content_name: 'calculator_b' });
 
       setIsSubmitted(true);
     } catch (error) {

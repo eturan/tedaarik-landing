@@ -3,6 +3,7 @@ import { DollarSign, Clock, CheckCircle2, ArrowRight, ChevronLeft } from 'lucide
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { capture, trackCtaClicked, trackCalculatorStarted, trackCalculatorEmailSubmitted, trackSignupCtaClicked } from '@/lib/posthog';
+import { trackCalculatorStartedPixel, trackLead, trackStartTrial } from '@/lib/meta-pixel';
 import { buildSignupUrl } from '@/lib/utm';
 
 const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/a5i9qvabclxwpuft0ao3wewombopcxge";
@@ -41,6 +42,7 @@ export function Calculator() {
   const handleNext = () => {
     if (step === 1) {
       trackCalculatorStarted('a');
+      trackCalculatorStartedPixel();
     }
     setStep(step + 1);
   };
@@ -76,6 +78,7 @@ export function Calculator() {
         monthly_volume: monthlyVolume,
         yearly_savings: yearlySavings,
       });
+      trackLead({ content_name: 'calculator_a' });
 
       setIsSubmitted(true);
     } catch (error) {
@@ -319,7 +322,7 @@ export function Calculator() {
                         <p className="text-[#3B3B3B] font-medium mb-4">{t.calculator.step3.successActionDesc}</p>
                         <a
                           href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-                          onClick={() => trackSignupCtaClicked('calculator', 'a')}
+                          onClick={() => { trackSignupCtaClicked('calculator', 'a'); trackStartTrial(); }}
                           className="block w-full bg-[#158F86] text-white px-8 py-3 rounded-xl hover:bg-[#117A71] transition-colors font-medium text-lg shadow-lg text-center"
                         >
                           {t.calculator.step3.startTrialBtn}

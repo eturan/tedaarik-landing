@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { buildSignupUrl } from '@/lib/utm';
 import { trackSignupCtaClicked } from '@/lib/posthog';
+import { trackStartTrial } from '@/lib/meta-pixel';
 
 export function CTA() {
   const { t, language } = useLanguage();
@@ -50,7 +51,7 @@ export function CTA() {
         >
           <motion.a
             href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-            onClick={() => trackSignupCtaClicked('cta-bottom', 'a')}
+            onClick={() => { trackSignupCtaClicked('cta-bottom', 'a'); trackStartTrial(); }}
             className="bg-[#158F86] text-white px-8 py-4 rounded-xl hover:bg-[#117A71] transition-all font-bold text-lg shadow-lg flex items-center justify-center gap-2 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

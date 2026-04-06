@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 import logoIcon from '@/assets/tedaarik-icon.png';
 import { buildSignupUrl } from '@/lib/utm';
 import { trackSignupCtaClicked } from '@/lib/posthog';
+import { trackStartTrial } from '@/lib/meta-pixel';
 
 export function Navigation() {
   const { t, language, setLanguage } = useLanguage();
@@ -90,7 +91,7 @@ export function Navigation() {
 
             <motion.a
               href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-              onClick={() => trackSignupCtaClicked('nav', 'a')}
+              onClick={() => { trackSignupCtaClicked('nav', 'a'); trackStartTrial(); }}
               className="bg-[#158F86] text-white px-6 py-2.5 rounded-full hover:bg-[#117A71] transition-colors font-semibold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -156,7 +157,7 @@ export function Navigation() {
 
               <a
                 href={buildSignupUrl(`https://app.tedaarik.com/signup?lang=${language}`)}
-                onClick={() => trackSignupCtaClicked('nav-mobile', 'a')}
+                onClick={() => { trackSignupCtaClicked('nav-mobile', 'a'); trackStartTrial(); }}
                 className="block bg-[#158F86] text-white px-5 py-2.5 rounded-full text-center font-semibold"
               >
                 {t.nav.startTrial}
