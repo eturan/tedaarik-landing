@@ -5,8 +5,8 @@ import { useBLanguage } from '@/hooks/useBLanguage';
 import { trackStartTrial } from '@/lib/meta-pixel';
 import { trackSignupCtaClicked } from '@/lib/posthog';
 import { buildSignupUrl } from '@/lib/utm';
-import heroImageEn from '@/assets/hero-dashboard.png';
-import heroImageTr from '@/assets/hero-dashboard-tr.png';
+import heroImageEn from '@/assets/hero-dashboard-b.png';
+import heroImageTr from '@/assets/hero-dashboard-tr-b.png';
 
 export function HeroB() {
   const { t, language } = useBLanguage();

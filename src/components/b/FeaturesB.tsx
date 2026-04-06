@@ -5,7 +5,7 @@ import { useBLanguage } from '@/hooks/useBLanguage';
 import costAnalysisEn from '@/assets/feature-cost-analysis.png';
 import recipeCostEn from '@/assets/feature-recipe-cost.png';
 import priceComparisonEn from '@/assets/feature-price-comparison.png';
-import costAnalysisTr from '@/assets/feature-cost-analysis-tr.png';
+import costAnalysisTr from '@/assets/feature-cost-analysis-tr-b.png';
 import recipeCostTr from '@/assets/feature-recipe-cost-tr.png';
 import priceComparisonTr from '@/assets/feature-price-comparison-tr.png';
 
