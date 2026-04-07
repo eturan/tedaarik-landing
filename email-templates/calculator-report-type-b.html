@@ -1,0 +1,226 @@
+<!--
+  MAKE.COM EMAIL FIELDS (copy these separately into Make)
+
+  Subject:    ₺{{formatNumber(1.yearlyLeak; 0; ","; ".")}} kaybınız var — Kâr Sızıntısı Raporunuz
+  Preheader:  Hesaplayıcı sonuçlarınız ve bu sızıntıyı nasıl durdurabileceğiniz bu e-postada.
+-->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kâr Sızıntısı Analiz Raporu</title>
+  <!--[if mso]>
+  <style>body, table, td { font-family: 'Segoe UI', Tahoma, sans-serif !important; }</style>
+  <![endif]-->
+</head>
+<body style="margin: 0; padding: 0; background-color: #f4f7f6; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #333333; line-height: 1.6; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+
+  <!-- Wrapper table for full-width background -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f7f6;">
+    <tr>
+      <td align="center" style="padding: 20px 0;">
+
+        <!-- Main container -->
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%; background: #ffffff; border-radius: 16px; overflow: hidden;">
+
+          <!-- Content -->
+          <tr>
+            <td style="padding: 40px;">
+
+              <!-- Logo -->
+              <img src="https://tedaarik.com/favicon.png" width="45" height="45" alt="Tedaarik" style="display: block; margin-bottom: 20px; border: 0;">
+
+              <p style="margin: 0 0 16px 0; font-size: 15px; color: #333333; line-height: 1.6;">Merhabalar,</p>
+
+              <!--
+                MAKE.COM VARIABLE REFERENCE
+                Available from webhook payload:
+                  {{1.monthlyRevenue}}   — Monthly revenue (number)
+                  {{1.cuisineId}}        — Establishment type ID (fast_food|cafe|kebap|restaurant|esnaf|bakery)
+                  {{1.cuisineLabel}}     — Establishment type Turkish label (e.g. "Kebapçı / Ocakbaşı")
+                  {{1.estimatedSpend}}   — Monthly COGS estimate (number)
+                  {{1.monthlyLeak}}      — Monthly leak amount (number)
+                  {{1.yearlyLeak}}       — Yearly leak amount (number)
+                  {{1.leakOverpayment}}  — Monthly overpayment leak (estimatedSpend × 0.13)
+                  {{1.leakWaste}}        — Monthly waste leak (estimatedSpend × 0.05)
+                  {{1.leakAdmin}}        — Monthly admin leak (estimatedSpend × 0.02)
+                  {{1.email}}            — User's email address
+
+                Use formatNumber for Turkish formatting:
+                  {{formatNumber(1.yearlyLeak; 0; ","; ".")}}
+                  {{formatNumber(1.monthlyLeak; 0; ","; ".")}}
+                  {{formatNumber(1.estimatedSpend; 0; ","; ".")}}
+                  {{formatNumber(1.monthlyRevenue; 0; ","; ".")}}
+                  {{formatNumber(1.leakOverpayment; 0; ","; ".")}}
+                  {{formatNumber(1.leakWaste; 0; ","; ".")}}
+                  {{formatNumber(1.leakAdmin; 0; ","; ".")}}
+              -->
+
+              <p style="margin: 0 0 16px 0; font-size: 15px; color: #333333; line-height: 1.6;">Tedaarik Kâr Sızıntısı Analiz Aracını kullandığınız için teşekkürler. <strong style="color: #1A202C;">{{1.cuisineLabel}}</strong> sektöründe faaliyet gösteren bir işletme olarak, aylık ₺{{formatNumber(1.monthlyRevenue; 0; ","; ".")}} cironuzun yaklaşık <strong style="color: #1A202C;">₺{{formatNumber(1.estimatedSpend; 0; ","; ".")}}</strong> kadarı doğrudan hammadde ve tedarik giderine gidiyor. Bu harcamanın içinde fark edilmesi güç ama ciddi sızıntılar var.</p>
+
+              <!-- Loss Box -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 30px;">
+                <tr>
+                  <td style="background-color: #FFF5F5; border-radius: 12px; padding: 24px; border: 1px solid #FED7D7; text-align: center;">
+                    <p style="margin: 0; font-size: 13px; font-weight: 700; color: #742A2A; text-transform: uppercase; letter-spacing: 0.5px;">Yıllık Toplam Kâr Sızıntısı</p>
+                    <p style="margin: 10px 0; font-size: 32px; font-weight: 800; color: #C53030; line-height: 1.2;">₺{{formatNumber(1.yearlyLeak; 0; ","; ".")}}</p>
+                    <p style="margin: 0; font-size: 14px; color: #742A2A;">Bu rakam işletmenizin masada bıraktığı paradır.</p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Breakdown Table -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 30px;">
+                <tr>
+                  <td width="65%" style="padding: 10px 16px; font-size: 14px; color: #555555; border-bottom: 1px solid #EDF2F7; white-space: nowrap;">Tedarikçi Fiyat Farkı (%13)</td>
+                  <td width="35%" style="padding: 10px 16px; font-size: 14px; font-weight: 700; color: #1A202C; text-align: right; border-bottom: 1px solid #EDF2F7; white-space: nowrap;">₺{{formatNumber(1.leakOverpayment; 0; ","; ".")}}/ay</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 16px; font-size: 14px; color: #555555; border-bottom: 1px solid #EDF2F7; white-space: nowrap;">Operasyonel Gecikme (%5)</td>
+                  <td style="padding: 10px 16px; font-size: 14px; font-weight: 700; color: #1A202C; text-align: right; border-bottom: 1px solid #EDF2F7; white-space: nowrap;">₺{{formatNumber(1.leakWaste; 0; ","; ".")}}/ay</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 16px; font-size: 14px; color: #555555; border-bottom: 1px solid #EDF2F7; white-space: nowrap;">İdari Verimsizlik (%2)</td>
+                  <td style="padding: 10px 16px; font-size: 14px; font-weight: 700; color: #1A202C; text-align: right; border-bottom: 1px solid #EDF2F7; white-space: nowrap;">₺{{formatNumber(1.leakAdmin; 0; ","; ".")}}/ay</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 16px; font-size: 14px; font-weight: 700; color: #C53030; white-space: nowrap;">Toplam Aylık Sızıntı</td>
+                  <td style="padding: 12px 16px; font-size: 14px; font-weight: 800; color: #C53030; text-align: right; white-space: nowrap;">₺{{formatNumber(1.monthlyLeak; 0; ","; ".")}}/ay</td>
+                </tr>
+              </table>
+
+              <!-- Early CTA -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 30px;">
+                <tr>
+                  <td align="center">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td align="center" style="border-radius: 10px; background: #158F86;">
+                          <a href="https://app.tedaarik.com/signup?lang=tr" target="_blank" style="display: inline-block; padding: 14px 24px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 700; color: #ffffff; text-decoration: none; border-radius: 10px;">Bu Sızıntıları Durdurmak İçin Hemen Başlayın &rarr;</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin: 0 0 24px 0; font-size: 15px; color: #333333; line-height: 1.6;">Gelin masada bıraktığınız bu paranın nereden geldiğini birlikte inceleyelim:</p>
+
+              <!-- Section 1: Supplier Overpayment (13%) -->
+              <p style="font-size: 18px; font-weight: 700; color: #1A202C; margin: 30px 0 15px 0; padding-bottom: 6px; border-bottom: 2px solid #158F86; display: inline-block;">
+                <span style="color: #158F86; font-weight: 800; font-size: 20px;">%13</span> Tedarikçi Fiyat Farkı ve Vade Tuzağı
+              </p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 25px;">
+                <tr>
+                  <td style="background: #F8FAFC; border-left: 4px solid #158F86; padding: 20px; font-size: 14px; color: #333333; line-height: 1.6;">
+                    Tedarikçiler genelde en çok tükettiğiniz ürünlerde düşük fiyat verip güven kazanırlar; ama geri kalan 50 kalemde marjı 2-3 katına çıkarıp arayı kapatırlar. Ankara'da 19 restoranı olan bir dostumuz, "6 aylık yağı tek seferde, peşin ödemeyle 10 yıllık tedarikçimden alıyorum; benden iyi fiyatı kimse bulamaz." diyordu. <strong style="color: #1A202C;">Aynı ürün için daha iyi fiyatı bulmamız sadece 2 saat sürdü.</strong>
+                    <br><br>
+                    Daha da kötüsü "vade" meselesi. Tedarikçi "Abi sana yardımcı oluyorum" derken aslında sizi finansal olarak kendine mecbur bırakır. Aslında o vadeyi, az miktarda ama pahalıya ürünlerle yine siz finanse edersiniz. Başka tedarikçiye geçmek istediğinizde ise "borcunu hemen öde" talebiyle karşılaşırsınız.
+                    <br><br>
+                    Tedaarik, satın alma fiyatlarınızı piyasa ortalamasıyla anlık olarak kıyaslayarak bu "sadakat vergisinden" kurtulmanızı sağlar. <strong style="color: #1A202C;">Tedarikçinizle aranızdaki ilişkiyi bozmadan, masaya verilerle ve çok daha güçlü bir şekilde oturmanıza yardımcı olur.</strong>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Section 2: Operational Delay (5%) -->
+              <p style="font-size: 18px; font-weight: 700; color: #1A202C; margin: 30px 0 15px 0; padding-bottom: 6px; border-bottom: 2px solid #158F86; display: inline-block;">
+                <span style="color: #158F86; font-weight: 800; font-size: 20px;">%5</span> Operasyonel Gecikme: "Yangın Söndürme" Hali
+              </p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 25px;">
+                <tr>
+                  <td style="background: #F8FAFC; border-left: 4px solid #158F86; padding: 20px; font-size: 14px; color: #333333; line-height: 1.6;">
+                    Bir işletmeci dostuma reçete maliyetlerini kaç haftada bir güncellediğini sorduğumda gülmüştü: "En iyi ihtimalle 3-4 ayda bir güncelleyebiliyorum. Müşteri personelle tartışıyor, mutfakta usta yetişemiyor, arka tarafta tuvalet tıkanmış usta bekliyoruz. Ben bu yangının içinde kâğıt kürek işiyle mi uğraşayım?" demişti.
+                    <br><br>
+                    Çok haklıydı. Ama bu koşturmacada hammaddeye gelen zamları reçeteye yansıtamadığınız her ay, <strong style="color: #1A202C;">farkında olmadan bazı yemekleri zararına satıyorsunuz.</strong> Sizin kâr marjı sandığınız rakamlar, güncel olmayan maliyetler yüzünden kasanızdan sessizce akıp gidiyor.
+                    <br><br>
+                    Tedaarik bu "yangını" sizin yerinize kontrol altına alır. Fatura sisteme düştüğü an o ürünün kullanıldığı tüm <strong style="color: #1A202C;">reçete maliyetlerini saniyeler içinde güncelleyerek sizi sürpriz zararlardan kurtarır</strong>.
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Section 3: Admin Inefficiency (2%) -->
+              <p style="font-size: 18px; font-weight: 700; color: #1A202C; margin: 30px 0 15px 0; padding-bottom: 6px; border-bottom: 2px solid #158F86; display: inline-block;">
+                <span style="color: #158F86; font-weight: 800; font-size: 20px;">%2</span> İdari Verimlilik: Angarya ve "Görünmez Hata" Vergisi
+              </p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 25px;">
+                <tr>
+                  <td style="background: #F8FAFC; border-left: 4px solid #158F86; padding: 20px; font-size: 14px; color: #333333; line-height: 1.6;">
+                    Bir faturayı elle işlemek (kalemleri eşleme, fiyat kontrolü, muhasebe girişi), en yetkin personel için bile ortalamada <strong style="color: #1A202C;">4 dakika</strong> sürer. Ancak restoranda kimse sadece faturaya odaklanamaz; kapıda kurye bekler, içeride sipariş hazırlanır, o an telefon çalar... Bu dikkat dağınıklığı kaçınılmaz olarak veri hatalarına yol açar.
+                    <br><br>
+                    Yanlış girilen bir birim fiyat veya gözden kaçan bir kalem; reçete maliyetlerinizi ve cari hesaplarınızı bir domino taşı gibi devirir. Geriye dönüp o hatayı bulup düzeltmek, faturayı girerken harcanan sürenin kat kat fazlasını alır.
+                    <br><br>
+                    Tedaarik, faturaları bir fotoğraf veya dijital belge üzerinden saniyeler içinde hatasız işler. E-fatura veya ön muhasebe uygulamanızı entegre ettiğinizde fatura yüklemenize bile gerek kalmaz. Bu sayede, ayda ortalama 250 fatura alan bir işletmenin <strong style="color: #1A202C;">her ay çöpe attığı en az 1000 dakika işletmeye değer katan, müşteriye odaklanan işler için serbest kalır</strong>.
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Vision Box -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 40px;">
+                <tr>
+                  <td style="background-color: #fafafa; border-radius: 12px; padding: 28px; border: 1px solid #eeeeee;">
+                    <h2 style="font-size: 20px; text-align: center; margin: 0 0 16px 0; color: #1A202C; font-weight: 700;">&#129309; Vizyonumuz: Ortak Satın Alma Gücü</h2>
+                    <p style="text-align: center; margin: 0 0 20px 0; font-size: 15px; color: #555555; line-height: 1.6;">
+                      Tedaarik sadece bir yazılım değil; sizin gibi yüzlerce işletmenin alım gücünü birleştirerek tedarikçilerle sizin adınıza pazarlık masasına oturan ortağınızdır.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td align="center" style="padding: 10px 0;">
+                          <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td align="center" style="border-radius: 10px; background: #158F86;">
+                                <a href="https://calendar.app.google/JvXgJgUpPyzvYWnC7" target="_blank" style="display: inline-block; padding: 16px 28px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700; color: #ffffff; text-decoration: none; border-radius: 10px;">Tedaarik'i Birlikte Konuşalım (Demo)</a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center" style="padding: 10px 0;">
+                          <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                              <td align="center" style="border-radius: 10px; border: 2px solid #158F86;">
+                                <a href="https://app.tedaarik.com/signup?lang=tr" target="_blank" style="display: inline-block; padding: 14px 28px; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700; color: #158F86; text-decoration: none; border-radius: 10px;">Paranızı Geri Kazanmaya Kendiniz Başlayın</a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Sign-off -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 50px;">
+                <tr>
+                  <td align="center" style="font-size: 14px; color: #666666;">
+                    <p style="margin: 0;">Başarılar dileriz,</p>
+                    <p style="margin: 4px 0 0 0; font-weight: 700; color: #158F86;">Boğaç YILDIRIM - CEO</p>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+
+        <!-- Footer -->
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
+          <tr>
+            <td align="center" style="font-size: 12px; color: #999999; padding: 20px; line-height: 1.8;">
+              &copy; 2026 Tedaarik. Tüm hakları saklıdır.<br>
+              Bu e-posta, tedaarik.com üzerindeki Kâr Sızıntısı Denetimi sonucunda oluşturulmuştur.<br>
+              <a href="{{UNSUBSCRIBE_URL}}" target="_blank" style="color: #999999; text-decoration: underline;">E-posta almak istemiyorsanız buraya tıklayın</a>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

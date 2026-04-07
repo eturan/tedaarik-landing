@@ -85,9 +85,13 @@ export function Calculator() {
         body: JSON.stringify({
           monthlyRevenue,
           cuisineId: selectedCuisine.id,
+          cuisineLabel: selectedCuisine.tr,
           estimatedSpend,
           monthlyLeak: totalMonthlyLeak,
           yearlyLeak,
+          leakOverpayment: leakBreakdown.overpayment,
+          leakWaste: leakBreakdown.waste,
+          leakAdmin: leakBreakdown.admin,
           email,
         }),
       });
