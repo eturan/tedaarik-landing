@@ -58,16 +58,15 @@ export function Calculator() {
     try {
       await fetch(MAKE_WEBHOOK_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
           yearlySavings,
           monthlyTimeSavedHours: Math.round(monthlyTimeSavedHours),
           yearlyTimeSavedHours: Math.round(yearlyTimeSavedHours),
           invoices,
           monthlyVolume,
-          email,
+          email: email.trim(),
+          variant: 'a',
         }),
       });
 

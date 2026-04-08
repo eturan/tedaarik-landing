@@ -6,7 +6,7 @@ import { trackStartTrial, trackCalculatorStartedPixel, trackLead } from '@/lib/m
 import { trackCalculatorStarted, trackCalculatorEmailSubmitted, trackSignupCtaClicked } from '@/lib/posthog';
 import { buildSignupUrl } from '@/lib/utm';
 
-const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/a5i9qvabclxwpuft0ao3wewombopcxge";
+const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/jm4jc6uu1fzm64b3cwymis8g81dh6yow";
 
 const iconMap = {
   fast_food: Sandwich,
@@ -82,17 +82,25 @@ export function CalculatorB() {
     setIsSubmitting(true);
 
     try {
+      const payload = {
+        monthlyRevenue,
+        cuisineId: selectedCuisine.id,
+        cuisineLabel: selectedCuisine.tr,
+        estimatedSpend: Math.round(estimatedSpend),
+        monthlyLeak: Math.round(totalMonthlyLeak),
+        yearlyLeak: Math.round(yearlyLeak),
+        leakOverpayment: Math.round(leakBreakdown.overpayment),
+        leakWaste: Math.round(leakBreakdown.waste),
+        leakAdmin: Math.round(leakBreakdown.admin),
+        email: email.trim(),
+        language,
+        variant: 'b',
+      };
+
       await fetch(MAKE_WEBHOOK_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          monthlyRevenue,
-          cuisineId: selectedCuisine.id,
-          estimatedSpend,
-          monthlyLeak: totalMonthlyLeak,
-          yearlyLeak,
-          email,
-        }),
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(payload),
       });
 
       trackCalculatorEmailSubmitted({
