@@ -3,6 +3,7 @@ import { NavigationB } from '@/components/b/NavigationB';
 import { HeroB } from '@/components/b/HeroB';
 import { LogoBelt } from '@/components/LogoBelt';
 import { PainPointsB } from '@/components/b/PainPointsB';
+import { VideoShowcaseB } from '@/components/b/VideoShowcaseB';
 import { CalculatorB } from '@/components/b/CalculatorB';
 import { FeaturesB } from '@/components/b/FeaturesB';
 import { HowItWorksB } from '@/components/b/HowItWorksB';
@@ -26,6 +27,7 @@ const IndexB = () => {
         <HeroB />
         <LogoBelt />
         <PainPointsB />
+        <VideoShowcaseB />
         <CalculatorB />
         <FeaturesB />
         <HowItWorksB />
