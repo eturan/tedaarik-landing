@@ -116,6 +116,23 @@ export const translations = {
         li3: 'Negotiate with confidence using real data'
       }
     },
+    videoShowcase: {
+      title: 'See It In Action',
+      subtitle: 'Watch short demos of each feature',
+      v1: {
+        title: 'Invoice Upload & Data Analysis',
+        desc: 'Upload your invoices and let AI extract the data automatically',
+      },
+      v2: {
+        title: 'Materials & Unit Cost Tracking',
+        desc: 'Track ingredient prices and compare unit costs across suppliers',
+      },
+      v3: {
+        title: 'Recipe & Menu Management',
+        desc: 'AI-powered recipe costing and menu optimization',
+      },
+      cta: 'Estimate Your Savings',
+    },
     howItWorks: {
       title: 'How Does It Work?',
       subtitle: 'A simple flow that saves you hours every week',
@@ -310,6 +327,23 @@ export const translations = {
         li3: 'Gerçek verileri kullanarak güvenle pazarlık yapın'
       }
     },
+    videoShowcase: {
+      title: 'Ürünü Keşfedin',
+      subtitle: 'Her özelliği kısa videolarla tanıyın',
+      v1: {
+        title: 'Fatura Yükleme ve Veri Analizi',
+        desc: 'Faturalarınızı yükleyin, yapay zeka verileri otomatik çıkarsın',
+      },
+      v2: {
+        title: 'Malzemeler ve Birim Maliyet',
+        desc: 'Malzeme fiyatlarını takip edin, birim maliyetleri karşılaştırın',
+      },
+      v3: {
+        title: 'Reçete ve Menü Yönetimi',
+        desc: 'AI destekli reçete maliyeti hesaplama ve menü optimizasyonu',
+      },
+      cta: 'Tasarrufunu Hesapla',
+    },
     howItWorks: {
       title: 'Nasıl Çalışır?',
       subtitle: 'Size her hafta saatler kazandıran basit bir akış',
@@ -498,6 +532,23 @@ export const translationsB = {
       },
       cta: 'See Your Savings',
     },
+    videoShowcase: {
+      title: 'See It In Action',
+      subtitle: 'Watch short demos of each feature',
+      v1: {
+        title: 'Invoice Upload & Data Analysis',
+        desc: 'Upload your invoices and let AI extract the data automatically',
+      },
+      v2: {
+        title: 'Materials & Unit Cost Tracking',
+        desc: 'Track ingredient prices and compare unit costs across suppliers',
+      },
+      v3: {
+        title: 'Recipe & Menu Management',
+        desc: 'AI-powered recipe costing and menu optimization',
+      },
+      cta: 'Estimate Your Savings',
+    },
     howItWorks: {
       title: 'How Does It Work?',
       subtitle: 'You upload your invoices. Tedaarik finds where your cash is leaking.',
@@ -656,6 +707,23 @@ export const translationsB = {
         li3: 'Gerçek verileri kullanarak güvenle pazarlık yapın'
       },
       cta: 'Tasarrufunuzu Görün',
+    },
+    videoShowcase: {
+      title: 'Ürünü Keşfedin',
+      subtitle: 'Her özelliği kısa videolarla tanıyın',
+      v1: {
+        title: 'Fatura Yükleme ve Veri Analizi',
+        desc: 'Faturalarınızı yükleyin, yapay zeka verileri otomatik çıkarsın',
+      },
+      v2: {
+        title: 'Malzemeler ve Birim Maliyet',
+        desc: 'Malzeme fiyatlarını takip edin, birim maliyetleri karşılaştırın',
+      },
+      v3: {
+        title: 'Reçete ve Menü Yönetimi',
+        desc: 'AI destekli reçete maliyeti hesaplama ve menü optimizasyonu',
+      },
+      cta: 'Tasarrufunu Hesapla',
     },
     howItWorks: {
       title: 'Nasıl Çalışır?',
