@@ -14,7 +14,7 @@ export function VideoShowcase() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
+    <section id="video-showcase" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-12"
@@ -37,7 +37,7 @@ export function VideoShowcase() {
             return (
               <motion.div
                 key={video.id}
-                className="bg-white rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden cursor-pointer"
+                className="bg-white rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -57,9 +57,12 @@ export function VideoShowcase() {
                   }
                 />
                 <div className="p-4">
-                  <h3 className="font-semibold text-[#3B3B3B] mb-1">
-                    {content.title}
-                  </h3>
+                  <div className="flex items-center gap-2 mb-1">
+                    <div className="w-2 h-2 rounded-full bg-[#158F86] shrink-0" />
+                    <h3 className="font-semibold text-[#3B3B3B]">
+                      {content.title}
+                    </h3>
+                  </div>
                   <p className="text-sm text-[#3B3B3B]/70">
                     {content.desc}
                   </p>
