@@ -1,0 +1,87 @@
+<h2>Features Section — Video Replacing Screenshots</h2>
+<p class="subtitle">Same alternating layout, but the image slot becomes a lazy YouTube embed. Aspect ratio changes from 4:3 to 16:9.</p>
+
+<div class="mockup">
+  <div class="mockup-header">Features Section — Before vs After</div>
+  <div class="mockup-body" style="padding:24px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+
+      <!-- BEFORE -->
+      <div>
+        <div style="text-align:center; margin-bottom:12px;">
+          <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">BEFORE (static image)</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center;">
+          <div>
+            <div style="background:#158F86; width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+            </div>
+            <div style="font-size:12px; font-weight:700; color:#3B3B3B; margin-bottom:4px;">Fatura Dijitalleştirme</div>
+            <div style="font-size:9px; color:#666; line-height:1.4; margin-bottom:6px;">Faturalarınızı yükleyin, gerisini biz halledelim.</div>
+            <div style="font-size:8px; color:#158F86;">✓ Kamera, e-posta veya e-fatura</div>
+            <div style="font-size:8px; color:#158F86;">✓ Otomatik veri çıkarma</div>
+            <div style="font-size:8px; color:#158F86;">✓ Dijital arşiv</div>
+          </div>
+          <div style="background:#e2e8f0; border-radius:8px; aspect-ratio:4/3; display:flex; align-items:center; justify-content:center;">
+            <div style="font-size:10px; color:#94a3b8; text-align:center;">Static<br>Screenshot<br><strong>4:3</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AFTER -->
+      <div>
+        <div style="text-align:center; margin-bottom:12px;">
+          <span style="background:#dcfce7; color:#166534; padding:4px 12px; border-radius:6px; font-size:12px; font-weight:600;">AFTER (video embed)</span>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center;">
+          <div>
+            <div style="background:#158F86; width:28px; height:28px; border-radius:6px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+            </div>
+            <div style="font-size:12px; font-weight:700; color:#3B3B3B; margin-bottom:4px;">Fatura Dijitalleştirme</div>
+            <div style="font-size:9px; color:#666; line-height:1.4; margin-bottom:6px;">Faturalarınızı yükleyin, gerisini biz halledelim.</div>
+            <div style="font-size:8px; color:#158F86;">✓ Kamera, e-posta veya e-fatura</div>
+            <div style="font-size:8px; color:#158F86;">✓ Otomatik veri çıkarma</div>
+            <div style="font-size:8px; color:#158F86;">✓ Dijital arşiv</div>
+          </div>
+          <div style="background:#0f172a; border-radius:8px; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+            <div style="position:absolute; inset:0; background:linear-gradient(135deg,#0f766e 0%,#134e4a 100%); opacity:0.8;"></div>
+            <div style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.9); display:flex; align-items:center; justify-content:center; z-index:1; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+              <div style="width:0; height:0; border-left:12px solid #158F86; border-top:7px solid transparent; border-bottom:7px solid transparent; margin-left:3px;"></div>
+            </div>
+            <div style="position:absolute; bottom:6px; right:6px; background:rgba(0,0,0,0.75); color:white; padding:1px 6px; border-radius:3px; font-size:9px; z-index:1;">1:45</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:20px;">
+  <h3>What Changes</h3>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:10px;">
+    <div style="padding:14px; background:#fef2f2; border-radius:8px; border:1px solid #fecaca;">
+      <strong style="color:#991b1b; font-size:13px;">Removed</strong>
+      <ul style="margin:8px 0 0; padding-left:16px; font-size:12px; color:#7f1d1d;">
+        <li>6 static image imports (EN + TR × 3 features)</li>
+        <li><code>ImageWithFallback</code> component usage</li>
+        <li>Language-conditional image selection</li>
+        <li><code>aspect-[4/3]</code> container</li>
+      </ul>
+    </div>
+    <div style="padding:14px; background:#f0fdf4; border-radius:8px; border:1px solid #bbf7d0;">
+      <strong style="color:#166534; font-size:13px;">Added</strong>
+      <ul style="margin:8px 0 0; padding-left:16px; font-size:12px; color:#14532d;">
+        <li><code>LazyYouTube</code> component with video ID per feature</li>
+        <li><code>aspect-video</code> (16:9) container</li>
+        <li>Same videos for both languages (Turkish demos)</li>
+        <li>PostHog tracking on play</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:16px; padding:14px; background:#eff6ff; border-radius:8px; border:1px solid #bfdbfe;">
+  <strong style="color:#1e40af;">Key simplification:</strong>
+  <span style="color:#1e3a5f;"> Since videos are Turkish-only, we no longer need language-conditional image imports. The 6 static image imports and the <code>isTr ? trImage : enImage</code> logic get replaced with 3 hardcoded YouTube video IDs. Less code, simpler component.</span>
+</div>

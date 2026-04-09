@@ -9,8 +9,13 @@ interface LazyYouTubeProps {
 
 export function LazyYouTube({ videoId, title, className = '', onPlay }: LazyYouTubeProps) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [thumbnailUrl, setThumbnailUrl] = useState(
+    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+  );
 
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  const handleThumbnailError = useCallback(() => {
+    setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
+  }, [videoId]);
 
   const handlePlay = useCallback(() => {
     setIsPlaying(true);
@@ -38,6 +43,7 @@ export function LazyYouTube({ videoId, title, className = '', onPlay }: LazyYouT
             src={thumbnailUrl}
             alt={title}
             loading="lazy"
+            onError={handleThumbnailError}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
