@@ -6,7 +6,7 @@ import { trackStartTrial, trackCalculatorStartedPixel, trackLead } from '@/lib/m
 import { trackCalculatorStarted, trackCalculatorEmailSubmitted, trackSignupCtaClicked } from '@/lib/posthog';
 import { buildSignupUrl } from '@/lib/utm';
 
-const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/jm4jc6uu1fzm64b3cwymis8g81dh6yow";
+const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/m48k7j366oosptmakplilb2q5n1emcge";
 
 const iconMap = {
   fast_food: Sandwich,
