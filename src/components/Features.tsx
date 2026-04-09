@@ -1,20 +1,11 @@
-import { ImageWithFallback } from '@/components/figma/ImageWithFallback';
 import { ScanLine, Calculator, TrendingDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import costAnalysisEn from '@/assets/feature-cost-analysis.png';
-import recipeCostEn from '@/assets/feature-recipe-cost.png';
-import priceComparisonEn from '@/assets/feature-price-comparison.png';
-import costAnalysisTr from '@/assets/feature-cost-analysis-tr.png';
-import recipeCostTr from '@/assets/feature-recipe-cost-tr.png';
-import priceComparisonTr from '@/assets/feature-price-comparison-tr.png';
+import { LazyYouTube } from '@/components/LazyYouTube';
+import { trackVideoPlayed } from '@/lib/posthog';
 
 export function Features() {
-  const { t, language } = useLanguage();
-  const isTr = language === 'tr';
-  const costAnalysisImage = isTr ? costAnalysisTr : costAnalysisEn;
-  const recipeCostImage = isTr ? recipeCostTr : recipeCostEn;
-  const priceComparisonImage = isTr ? priceComparisonTr : priceComparisonEn;
+  const { t } = useLanguage();
 
   const features = [
     {
@@ -26,7 +17,7 @@ export function Features() {
         t.features.f1.li2,
         t.features.f1.li3,
       ],
-      image: costAnalysisImage,
+      videoId: 'd-Elwu_IUbg',
     },
     {
       icon: Calculator,
@@ -37,7 +28,7 @@ export function Features() {
         t.features.f2.li2,
         t.features.f2.li3,
       ],
-      image: recipeCostImage,
+      videoId: 'wfJ5q-NdAyI',
     },
     {
       icon: TrendingDown,
@@ -48,7 +39,7 @@ export function Features() {
         t.features.f3.li2,
         t.features.f3.li3,
       ],
-      image: priceComparisonImage,
+      videoId: 'ZpI--PCy-rQ',
     },
   ];
 
@@ -128,14 +119,22 @@ export function Features() {
                   transition={{ duration: 0.6 }}
                 >
                   <motion.div
-                    className="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl"
+                    className="aspect-video rounded-2xl overflow-hidden shadow-xl"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ImageWithFallback
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover"
+                    <LazyYouTube
+                      videoId={feature.videoId}
+                      title={feature.title}
+                      className="rounded-2xl"
+                      onPlay={() =>
+                        trackVideoPlayed({
+                          videoId: feature.videoId,
+                          title: feature.title,
+                          location: 'features',
+                          variant: 'a',
+                        })
+                      }
                     />
                   </motion.div>
                 </motion.div>
