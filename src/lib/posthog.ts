@@ -20,6 +20,7 @@ export const EVENTS = {
   CALCULATOR_STARTED: 'calculator_started',
   CALCULATOR_EMAIL_SUBMITTED: 'calculator_email_submitted',
   SIGNUP_CTA_CLICKED: 'signup_cta_clicked',
+  VIDEO_PLAYED: 'video_played',
 } as const;
 
 // Type-safe capture function
@@ -83,4 +84,13 @@ export function trackCalculatorEmailSubmitted(data: {
 
 export function trackSignupCtaClicked(location: string, variant: 'a' | 'b') {
   capture(EVENTS.SIGNUP_CTA_CLICKED, { location, variant });
+}
+
+export function trackVideoPlayed(data: {
+  videoId: string;
+  title: string;
+  location: 'video-showcase' | 'features';
+  variant: 'a' | 'b';
+}) {
+  capture(EVENTS.VIDEO_PLAYED, data);
 }
